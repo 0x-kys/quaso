@@ -48,7 +48,7 @@
   };
 
   networking = {
-    hostName = "quaso";
+    hostName = "nix";
 
     wireless = {enable = false;};
 
@@ -173,7 +173,7 @@
 
   environment = {
     sessionVariables = {NIXOS_OZONE_WL = "1";};
-    variables = {EDITOR = "nvim";};
+    variables = {EDITOR = "hx";};
 
     systemPackages = with pkgs; [
       vim
