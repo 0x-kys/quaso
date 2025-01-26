@@ -183,7 +183,7 @@
       grc
       wofi
       helix
-      dunst
+      # dunst
       pywal
       waybar
       nushell

@@ -12,12 +12,12 @@
       brave
       neovim
       spotify
-      ghostty
+      # ghostty
       libreoffice
       zed-editor
       obsidian
 
-      fastfetch
+      # fastfetch
       tmux
       nnn
 
@@ -55,7 +55,7 @@
       nix-output-monitor
 
       glow
-      bat
+      # bat
       tmux
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator

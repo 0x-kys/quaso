@@ -55,6 +55,192 @@
       enable = true;
     };
 
+    wofi = {
+      enable = true;
+      package = pkgs.wofi;
+      settings = {
+        width = 600;
+        height = 400;
+        background_color = "#0d0c0d";
+        border_color = "#5E5E5E";
+        text_color = "#FFFFFF";
+        border_width = 1;
+        border = 1;
+        rounding = 8;
+        shadow = 1;
+        shadow_color = "#00000055";
+        shadow_offset_x = 2;
+        shadow_offset_y = 2;
+        blur = 0;
+        font = "Monospace 10";
+        key_up = "Up";
+        key_down = "Down";
+        key_left = "Left";
+        key_right = "Right";
+        key_activate = "Return";
+        key_backspace = "BackSpace";
+        allow_images = false;
+        allow_markup = true;
+        insensitive = true;
+      };
+      style = ''
+                * {
+                font-family: Iosevka Nerd Font;
+                font-size: 10pt;
+        }
+
+        window {
+                margin: 0px;
+                border: 1px solid #5E5E5E;
+                background-color: #0d0c0d;
+                border-radius: 8px;
+        }
+
+        #input {
+                margin: 5px;
+                border: none;
+                background-color: #0d0c0d;
+                color: #FFFFFF;
+        }
+
+        #inner-box {
+                margin: 5px;
+                border: none;
+                background-color: transparent;
+        }
+
+        #outer-box {
+                margin: 0px;
+                border: none;
+                background-color: transparent;
+        }
+
+        #scroll {
+                margin: 0px;
+                border: none;
+        }
+
+        #text {
+                margin: 5px;
+                border: none;
+                color: #FFFFFF;
+        }
+
+        #entry {
+                border-radius: 5px;
+        }
+
+        #entry:selected {
+                background-color: #5E5E5E;
+        }
+
+        window {
+                box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.33);
+        }
+
+      '';
+    };
+
+    bat = {
+      enable = true;
+      package = pkgs.bat;
+      config = {
+        theme = "base16";
+        pager = "less -FR";
+        map-syntax = [
+          "*.jenkinsfile:Groovy"
+          "*.props:Java Properties"
+        ];
+      };
+    };
+
+    ghostty = {
+      enable = true;
+      package = pkgs.ghostty;
+      settings = {
+        theme = "Kanagawa Dragon";
+        font-size = 10;
+        font-family = "0xProto Nerd Font";
+        keybind = [
+          "ctrl+h=goto_split:left"
+          "ctrl+l=goto_split:right"
+        ];
+        window-decoration = false;
+        gtk-titlebar = false;
+        window-padding-x = 8;
+        window-padding-y = 8;
+        window-inherit-working-directory = true;
+        copy-on-select = true;
+        adjust-underline-position = 4;
+        mouse-hide-while-typing = true;
+        mouse-scroll-multiplier = 1;
+        cursor-invert-fg-bg = true;
+        selection-invert-fg-bg = true;
+        bold-is-bright = true;
+        cursor-style = "underline";
+        background-opacity = 1;
+        adjust-cell-height = "12%";
+        adjust-cell-width = "2%";
+        gtk-single-instance = true;
+      };
+      themes = {
+        kanagawa-dragon = {
+          background = "0d0c0d";
+          foreground = "c5c5c9";
+        };
+      };
+    };
+
+    fastfetch = {
+      enable = true;
+      settings = {
+        logo = {
+          source = "nix";
+          padding = {
+            right = 2;
+          };
+        };
+        display = {
+          size = {
+            binaryPrefix = "si";
+          };
+          color = "blue";
+          separator = "  ";
+        };
+        modules = [
+          # System information
+          "os"
+          "kernel"
+
+          "break"
+          "cpu"
+          "gpu"
+          "break"
+          "memory"
+          "break"
+          "terminal"
+          "wm"
+          "de"
+          "break"
+          # Date and time
+          {
+            type = "datetime";
+            key = "Date";
+            format = "{1}-{3}-{11}"; # YYYY-MM-DD
+          }
+          {
+            type = "datetime";
+            key = "Time";
+            format = "{14}:{17} {20}"; # HH:MM AM/PM
+          }
+          "break"
+          # Media information
+          "player"
+          "media"
+        ];
+      };
+    };
+
     git = {
       enable = true;
 
