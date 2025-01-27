@@ -152,8 +152,6 @@
       };
     };
 
-    # fish = {enable = true;};
-    # starship = {enable = true;};
     mtr = {enable = true;};
     nix-ld = {enable = true;};
   };
@@ -181,9 +179,7 @@
       wget
       fzf
       grc
-      wofi
       helix
-      # dunst
       pywal
       waybar
       nushell
@@ -225,9 +221,5 @@
     ];
   };
 
-  # Before changing this value read the documentation for this option
-  #
-  #   man configuration.nix
-  #   https://nixos.org/nixos/options.html
   system = {stateVersion = "24.11";};
 }

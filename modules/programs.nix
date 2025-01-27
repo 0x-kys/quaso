@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs = {
     nushell = {
       enable = true;
@@ -392,7 +396,7 @@
             formatter = {
               command = "${pkgs.alejandra}/bin/alejandra";
             };
-            language-servers = ["nil"];
+            language-servers = ["nil" "wakatime-ls"];
           }
 
           # Rust
@@ -402,7 +406,7 @@
             formatter = {
               command = "${pkgs.rustfmt}/bin/rustfmt";
             };
-            language-servers = ["rust-analyzer"];
+            language-servers = ["rust-analyzer" "wakatime-ls"];
           }
 
           # HTML
@@ -413,7 +417,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["html"];
             };
-            language-servers = ["html-languageserver"];
+            language-servers = ["html-languageserver" "wakatime-ls"];
           }
 
           # CSS
@@ -424,7 +428,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["css"];
             };
-            language-servers = ["css-languageserver"];
+            language-servers = ["css-languageserver" "wakatime-ls"];
           }
 
           # JavaScript
@@ -435,7 +439,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["javascript"];
             };
-            language-servers = ["typescript-language-server"];
+            language-servers = ["typescript-language-server" "wakatime-ls"];
           }
 
           # TypeScript
@@ -446,7 +450,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["typescript"];
             };
-            language-servers = ["typescript-language-server"];
+            language-servers = ["typescript-language-server" "wakatime-ls"];
           }
 
           # Svelte
@@ -457,7 +461,7 @@
               command = "${pkgs.nodePackages.prettier}/bin/prettier";
               args = ["--parser" "svelte"];
             };
-            language-servers = ["svelte-language-server"];
+            language-servers = ["svelte-language-server" "wakatime-ls"];
           }
 
           # Astro
@@ -468,7 +472,7 @@
               command = "${pkgs.nodePackages.prettier}/bin/prettier";
               args = ["--parser" "astro"];
             };
-            language-servers = ["astro-ls"];
+            language-servers = ["astro-ls" "wakatime-ls"];
           }
 
           # JSX
@@ -479,7 +483,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["jsx"];
             };
-            language-servers = ["typescript-language-server"];
+            language-servers = ["typescript-language-server" "wakatime-ls"];
           }
 
           # TSX
@@ -490,7 +494,7 @@
               command = "${pkgs.prettierd}/bin/prettierd";
               args = ["tsx"];
             };
-            language-servers = ["typescript-language-server"];
+            language-servers = ["typescript-language-server" "wakatime-ls"];
           }
 
           # Zig
@@ -501,7 +505,7 @@
               command = "${pkgs.zls}/bin/zls";
               args = ["--format"];
             };
-            language-servers = ["zls"];
+            language-servers = ["zls" "wakatime-ls"];
           }
 
           # Go
@@ -511,7 +515,7 @@
             formatter = {
               command = "${pkgs.gofumpt}/bin/gofumpt";
             };
-            language-servers = ["gopls"];
+            language-servers = ["gopls" "wakatime-ls"];
           }
         ];
         language-server = {
@@ -547,6 +551,9 @@
           gopls = {
             command = "${pkgs.gopls}/bin/gopls";
             args = ["serve"];
+          };
+          "wakatime-ls" = {
+            command = "${inputs.wakatime-ls.packages.${pkgs.system}.default}/bin/wakatime-ls";
           };
         };
       };
