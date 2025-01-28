@@ -183,6 +183,8 @@
         bold-is-bright = true;
         cursor-style = "underline";
         background-opacity = 1;
+        background = "0d0c0d";
+        foreground = "c5c5c9";
         adjust-cell-height = "12%";
         adjust-cell-width = "2%";
         gtk-single-instance = true;
