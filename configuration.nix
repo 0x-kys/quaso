@@ -193,7 +193,6 @@
       grc
       helix
       pywal
-      waybar
       nushell
       hyprpaper
       wl-clipboard

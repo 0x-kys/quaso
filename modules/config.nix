@@ -17,10 +17,6 @@
       path = "${config.home.homeDirectory}/.config/nixcfg/hypr";
     }
     {
-      name = "waybar";
-      path = "${config.home.homeDirectory}/.config/nixcfg/waybar";
-    }
-    {
       name = "scripts";
       path = "${config.home.homeDirectory}/.config/nixcfg/scripts";
     }
