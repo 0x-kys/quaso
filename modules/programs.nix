@@ -6,7 +6,6 @@
   programs = {
     nushell = {
       enable = true;
-      # configFile.source = ./nushell/config.nu;
       extraConfig = ''
         # Disable banner
         $env.config = {

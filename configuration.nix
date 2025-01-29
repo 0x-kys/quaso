@@ -136,7 +136,19 @@
     openssh = {enable = true;};
 
     # touchpad support
-    libinput = {enable = true;};
+    libinput = {
+      enable = true;
+
+      # disable mouse acceleration
+      mouse = {
+        accelProfile = "flat";
+      };
+
+      # disable touchpad acceleration
+      touchpad = {
+        accelProfile = "flat";
+      };
+    };
   };
 
   programs = {
