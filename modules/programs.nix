@@ -853,13 +853,25 @@
         theme = "autumn_night_transparent";
         keys = {
           normal = {
+            g = {
+              r = "goto_reference";
+              d = "goto_definition";
+            };
+            "C-p" = "file_picker";
             space = {
-              space = "file_picker";
+              c = {
+                a = "code_action";
+              };
+              r = {
+                n = "rename_symbol";
+              };
             };
             esc = ["collapse_selection" "keep_primary_selection"];
           };
         };
         editor = {
+          completion-trigger-len = 1; # start completion after typing just one character
+          completion-replace = true; # replace existing text with the completion
           end-of-line-diagnostics = "hint";
           inline-diagnostics = {
             cursor-line = "warning";
@@ -886,6 +898,8 @@
           line-number = "relative";
           lsp = {
             display-messages = true;
+            auto-signature-help = true; # automatically show function signature help
+            display-inlay-hints = true; # show inlay hints for parameters, types, etc.
           };
           indent-guides = {
             render = true;
