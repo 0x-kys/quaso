@@ -4,6 +4,208 @@
   ...
 }: {
   programs = {
+    emacs = {
+      enable = true;
+      package = pkgs.emacs;
+      extraPackages = epkgs: [
+        epkgs.use-package
+        epkgs.evil
+        epkgs.evil-collection
+        epkgs.general
+        epkgs.doom-themes
+        epkgs.flycheck
+        epkgs.lsp-ui
+        epkgs.company
+        epkgs.projectile
+        epkgs.ivy
+        epkgs.which-key
+        epkgs.highlight-indent-guides
+        epkgs.nix-mode
+        epkgs.web-mode
+        epkgs.typescript-mode
+        epkgs.svelte-mode
+        epkgs.go-mode
+        epkgs.zig-mode
+        epkgs.rust-mode
+      ];
+      extraConfig = ''
+        (require 'use-package)
+        (setq use-package-always-ensure t)
+
+        ;; Evil mode for Vim-like keybindings
+        (use-package evil
+          :init
+          (setq evil-want-integration t)
+          (setq evil-want-keybinding nil)
+          :config
+          (evil-mode 1))
+
+        (use-package evil-collection
+          :after evil
+          :config
+          (evil-collection-init))
+
+        ;; General for custom key bindings
+        (use-package general
+          :config
+          (general-evil-setup t)
+          (general-define-key
+           :states '(normal visual insert emacs)
+           :prefix "SPC"
+           :non-normal-prefix "M-SPC"
+           "g r" 'xref-find-references
+           "g d" 'xref-find-definitions
+           "C-p" 'projectile-find-file
+           "c a" 'lsp-execute-code-action
+           "r n" 'lsp-rename
+           "<escape>" (lambda ()
+           (interactive)
+           (evil-normal-state)
+           (evil-force-normal-state))
+           "f" 'my-projectile-find-file
+           "s n" 'nushell)
+          ;; Custom cursor shapes
+          (setq evil-normal-state-cursor 'box)
+          (setq evil-insert-state-cursor 'bar)
+          (setq evil-visual-state-cursor 'hollow))
+
+        ;; Theme
+        (use-package doom-themes
+          :config
+          (load-theme 'doom-one t))
+
+        ;; Editor settings
+        (setq-default tab-width 2)
+        (setq-default indent-tabs-mode nil)
+        (setq-default c-basic-offset 2)
+        (global-display-line-numbers-mode)
+        (setq display-line-numbers-type 'relative)
+        (setq-default truncate-lines t)  ; Equivalent to soft-wrap
+
+        ;; Diagnostics
+        (use-package flycheck
+          :config
+          (global-flycheck-mode)
+          (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
+          (setq flycheck-indication-mode 'right-fringe))
+
+        ;; LSP for language server protocol features
+        (use-package lsp-mode
+          :hook ((prog-mode . lsp)
+                 (lsp-mode . lsp-enable-which-key-integration))
+          :config
+          (setq lsp-keymap-prefix "C-c l")
+          (setq lsp-signature-auto-activate t)
+          (setq lsp-diagnostics-provider :auto)
+          (setq lsp-completion-provider :capf))
+
+        (use-package lsp-ui
+          :config
+          (setq lsp-ui-doc-enable t
+                lsp-ui-doc-use-childframe t
+                lsp-ui-doc-position 'top
+                lsp-ui-doc-include-signature t
+                lsp-ui-sideline-enable nil
+                lsp-ui-flycheck-enable t
+                lsp-ui-flycheck-list-position 'right
+                lsp-ui-flycheck-live-reporting t
+                lsp-ui-peek-enable t
+                lsp-ui-peek-list-width 60
+                lsp-ui-peek-peek-height 25))
+
+        ;; Completion
+        (use-package company
+          :config
+          (global-company-mode)
+          (setq company-minimum-prefix-length 1)
+          (setq company-idle-delay 0))
+
+        ;; Indent guides similar to Helix
+        (use-package highlight-indent-guides
+          :hook (prog-mode . highlight-indent-guides-mode)
+          :config
+          (setq highlight-indent-guides-character ?\u2502))
+
+        ;; Whitespace visualization
+        (use-package whitespace
+          :config
+          (global-whitespace-mode 1)
+          (setq whitespace-style '(face tabs spaces trailing lines space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark)))
+
+        ;; Set Bash as the default shell for NixOS
+        (setq explicit-shell-file-name "/run/current-system/sw/bin/bash")
+        (setq shell-file-name "bash")
+        (setq explicit-bash-args '("--noediting" "--login" "-i"))
+        (setenv "SHELL" shell-file-name)
+        (setenv "ESHELL" shell-file-name)
+
+        ;; File searching adjustments using Bash on NixOS
+        (use-package projectile
+          :config
+          (projectile-mode +1)
+          (setq projectile-completion-system 'ivy)
+          (defun my-projectile-find-file ()
+            "Find file in project using Bash shell on NixOS."
+            (interactive)
+            (let ((default-directory (or (projectile-project-root) default-directory)))
+              (call-process shell-file-name nil t nil "-c" "find . -type f -print0 | xargs -0 -n1 basename")))
+          (general-define-key
+           :states '(normal visual insert emacs)
+           :prefix "SPC"
+           "f" 'my-projectile-find-file))
+
+        ;; Shell mode configuration for NixOS
+        (use-package shell
+          :config
+          (setq shell-file-name "bash")
+          (setq explicit-shell-file-name "/run/current-system/sw/bin/bash")
+          (setq explicit-bash-args '("--noediting" "--login" "-i")))
+
+        ;; Adjust for Nushell integration, using Bash on NixOS
+        (defun nushell ()
+          "Run an inferior instance of Bash inside Emacs on NixOS."
+          (interactive)
+          (let* ((buffer (get-buffer-create "*shell*"))
+                 (default-directory (or (projectile-project-root) default-directory)))
+            (unless (comint-check-proc buffer)
+              (apply 'make-comint-in-buffer "shell" buffer (expand-file-name explicit-shell-file-name) nil explicit-bash-args))
+            (pop-to-buffer-same-window buffer)))
+
+        ;; Key bindings hints
+        (use-package which-key
+          :config
+          (which-key-mode))
+
+        ;; Language Support
+        (use-package nix-mode
+          :mode "\\.nix\\'")
+
+        (use-package rust-mode
+          :hook (rust-mode . lsp))
+
+        (use-package web-mode
+          :mode ("\\.html?\\'" "\\.css?\\'")
+          :config
+          (setq web-mode-markup-indent-offset 2)
+          (setq web-mode-css-indent-offset 2)
+          (setq web-mode-code-indent-offset 2))
+
+        (use-package typescript-mode
+          :mode ("\\.tsx?\\'" "\\.jsx?\\'")
+          :hook (typescript-mode . lsp))
+
+        (use-package svelte-mode
+          :mode "\\.svelte\\'")
+
+        (use-package go-mode
+          :mode "\\.go\\'"
+          :hook (go-mode . lsp))
+
+        (use-package zig-mode
+          :mode "\\.zig\\'")
+      '';
+    };
+
     tmux = {
       enable = true;
       package = pkgs.tmux;

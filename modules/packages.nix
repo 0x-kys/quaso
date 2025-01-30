@@ -9,10 +9,8 @@
       waypaper
 
       brave
-      neovim
       spotify
       libreoffice
-      zed-editor
       obsidian
 
       playerctl
