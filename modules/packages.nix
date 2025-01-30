@@ -5,7 +5,6 @@
       (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
 
       remmina
-      kanshi
       nwg-displays
       waypaper
 
@@ -54,9 +53,6 @@
       nix-output-monitor
 
       glow
-      tmux
-      tmuxPlugins.sensible
-      tmuxPlugins.vim-tmux-navigator
 
       btop
       iotop

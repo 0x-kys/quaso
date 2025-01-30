@@ -4,6 +4,96 @@
   ...
 }: {
   programs = {
+    tmux = {
+      enable = true;
+      package = pkgs.tmux;
+      baseIndex = 1;
+      clock24 = false;
+      keyMode = "vi";
+      mouse = true;
+      newSession = false;
+      terminal = "screen-256color";
+      historyLimit = 9999;
+
+      prefix = "C-Space";
+
+      extraConfig = ''
+        # Reload tmux configwith `Prefix + r`
+        bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
+
+        # Create new windows and panes with intuitive keys
+        bind t new-window
+        bind e split-window -v -c "#{pane_current_path}"
+        bind o split-window -h -c "#{pane_current_path}"
+
+        # Navigate through windows
+        bind h previous-window
+        bind l next-window
+
+        # Detach from current session
+        bind d detach-client
+
+        # Close current tab (window)
+        bind w kill-window
+
+        # Swap current window with another window
+        bind < swap-window -t -1
+        bind > swap-window -t +1
+
+        # Copy mode and clipboard integration
+        bind-key -T copy-mode-vi 'v' send -X begin-selection
+        bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+        bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+
+
+        # Renumber windows automatically
+        set -g renumber-windows on
+
+        # Window titles
+        setw -g automatic-rename on
+        set-option -g set-titles on
+        set-option -g set-titles-string "#S / #W"
+
+        # Status bar configuration with Kanagawa Dragon colors
+        set -g status-position top
+        set -g status-justify left
+        set -g status-style fg=#d8dee9,bg=#0d0c0d
+        set -g status-left-length 40
+        set -g status-left "#[fg=#88c0d0,bg=#0d0c0d] #S "
+        set -g status-right "#[fg=#88c0d0,bg=#0d0c0d]%a %d %b %Y %H:%M"
+        set -g window-status-format "#[fg=#d8dee9,bg=#0d0c0d]#I:#W"
+        set -g window-status-current-format "#[fg=#2e3440,bg=#81a1c1,bold] #I:#W "
+        set -g status-interval 1
+
+        # Pane borders for a more aesthetic look
+        set -g pane-border-style fg='#4c566a',bg=#0d0c0d
+        set -g pane-active-border-style fg='#88c0d0',bg=#0d0c0d
+      '';
+
+      plugins = with pkgs; [
+        tmuxPlugins.cpu
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        }
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '30'
+          '';
+        }
+        {
+          plugin = tmuxPlugins.sensible;
+          extraConfig = "set -g @plugin 'tmux-plugins/tmux-sensible'";
+        }
+        {
+          plugin = tmuxPlugins.vim-tmux-navigator;
+          extraConfig = "set -g @plugin 'christoomey/vim-tmux-navigator'";
+        }
+      ];
+    };
+
     waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -297,10 +387,6 @@
         }
 
       '';
-
-      systemd = {
-        enable = true;
-      };
     };
 
     nushell = {

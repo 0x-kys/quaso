@@ -10,12 +10,6 @@
         recursive = true;
       };
 
-      ".tmux.conf" = {
-        source =
-          config.lib.file.mkOutOfStoreSymlink
-          "${config.home.homeDirectory}/.config/nixcfg/tmux/.tmux.conf";
-      };
-
       "${config.home.homeDirectory}/.config/starship.toml" = {
         source =
           config.lib.file.mkOutOfStoreSymlink
