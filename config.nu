@@ -38,6 +38,12 @@ def gc [] {
   sudo nix-collect-garbage --delete-old
 }
 
+# Update everything
+def up-all [] {
+  up-flake
+  rbs-debug
+}
+
 ## Main entry point
 def main [command: string, ...args: string] {
   match $command {
