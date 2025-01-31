@@ -899,6 +899,11 @@
         autumn_night_transparent = {
           "inherits" = "autumn_night";
           "ui.background" = {};
+
+          "type" = {
+            "background" = "none";
+            "foreground" = "#ffffff";
+          };
         };
       };
     };
