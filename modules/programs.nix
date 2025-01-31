@@ -30,7 +30,7 @@
         epkgs.page-break-lines
         epkgs.dashboard
       ];
-      extraConfig = builtins.readFile ../emacs/config.el;
+      extraConfig = builtins.readFile ../extras/emacs/config.el;
     };
 
     tmux = {
@@ -46,58 +46,7 @@
 
       prefix = "C-Space";
 
-      extraConfig = ''
-        # Reload tmux configwith `Prefix + r`
-        bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
-
-        # Create new windows and panes with intuitive keys
-        bind t new-window
-        bind e split-window -v -c "#{pane_current_path}"
-        bind o split-window -h -c "#{pane_current_path}"
-
-        # Navigate through windows
-        bind h previous-window
-        bind l next-window
-
-        # Detach from current session
-        bind d detach-client
-
-        # Close current tab (window)
-        bind w kill-window
-
-        # Swap current window with another window
-        bind < swap-window -t -1
-        bind > swap-window -t +1
-
-        # Copy mode and clipboard integration
-        bind-key -T copy-mode-vi 'v' send -X begin-selection
-        bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
-        bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
-
-
-        # Renumber windows automatically
-        set -g renumber-windows on
-
-        # Window titles
-        setw -g automatic-rename on
-        set-option -g set-titles on
-        set-option -g set-titles-string "#S / #W"
-
-        # Status bar configuration with Kanagawa Dragon colors
-        set -g status-position top
-        set -g status-justify left
-        set -g status-style fg=#d8dee9,bg=#0d0c0d
-        set -g status-left-length 40
-        set -g status-left "#[fg=#88c0d0,bg=#0d0c0d] #S "
-        set -g status-right "#[fg=#88c0d0,bg=#0d0c0d]%a %d %b %Y %H:%M"
-        set -g window-status-format "#[fg=#d8dee9,bg=#0d0c0d]#I:#W"
-        set -g window-status-current-format "#[fg=#2e3440,bg=#81a1c1,bold] #I:#W "
-        set -g status-interval 1
-
-        # Pane borders for a more aesthetic look
-        set -g pane-border-style fg='#4c566a',bg=#0d0c0d
-        set -g pane-active-border-style fg='#88c0d0',bg=#0d0c0d
-      '';
+      extraConfig = builtins.readFile ../extras/tmux/tmux.conf;
 
       plugins = with pkgs; [
         tmuxPlugins.cpu
@@ -281,185 +230,12 @@
         };
       };
 
-      style = ''
-                * {
-        	border: none;
-        	border-radius: 0;
-        	font-family: "0xProto Nerd Font Propo";
-        	font-size: 12px;
-        	min-height: 0;
-        }
-
-        window#waybar {
-        	background: transparent;
-        }
-
-        #workspaces {
-        	margin-top: 4px;
-        	margin-left: 2px;
-        	margin-right: 2px;
-        }
-
-        #workspaces button {
-        	color: #cdcdcd;
-        	padding: 2px 8px;
-        	margin: 0 2px;
-        	font-size: 14px;
-        	background: #0d0c0d;
-        	border-radius: 4px;
-        }
-
-        #workspaces button.active {
-        	background: #252425;
-        }
-
-        #pulseaudio,
-        #network,
-        #cpu,
-        #memory,
-        #temperature,
-        #battery,
-        #clock,
-        #tray,
-        #custom-power,
-        #custom-swaylock,
-        #custom-suspend,
-        #custom-hibernate,
-        #custom-reboot,
-        #custom-exit_hyprland {
-        	background: #0d0c0d;
-        	padding: 2px 8px;
-        	margin-left: 2px;
-        	margin-right: 2px;
-        	margin-top: 4px;
-        	border-radius: 4px;
-        }
-
-        #custom-swaylock,
-        #custom-suspend,
-        #custom-hibernate,
-        #custom-reboot,
-        #custom-exit_hyprland {
-        	font-size: 14px;
-        	color: #ffffff;
-        }
-
-        #custom-swaylock {
-        	color: #8be9fd;
-        }
-
-        #custom-suspend {
-        	color: #bd93f9;
-        }
-
-        #custom-hibernate {
-        	color: #50fa7b;
-        }
-
-        #custom-exit_hyprland {
-        	color: #ff5555;
-        }
-
-        #custom-reboot {
-        	color: #8be9fd;
-        }
-
-        #pulseaudio,
-        #tray {
-        	color: #cdcdcd;
-        }
-
-        #custom-power {
-        	margin-right: 10px;
-        	color: #ff5555;
-        }
-
-        #cpu,
-        #memory,
-        #temperature {
-        	color: #cdcdcd;
-        }
-
-        #network {
-        	color: #bd93f9;
-        }
-
-        #battery {
-        	color: #f1fa8c;
-        }
-
-        #battery.charging {
-        	color: #50fa7b;
-        }
-
-        #battery.warning:not(.charging) {
-        	color: #ffb86c;
-        }
-
-        #battery.critical:not(.charging) {
-        	color: #ff5555;
-        }
-
-        #clock {
-        	color: #8be9fd;
-        }
-
-        #custom-expand,
-        #custom-endpoint {
-        	background: #0d0c0d;
-        	padding: 2px 8px;
-        	margin-left: 2px;
-        	margin-right: 2px;
-        	margin-top: 4px;
-        	border-radius: 4px;
-        	color: #ffffff;
-        }
-
-      '';
+      style = builtins.readFile ../extras/waybar/style.css;
     };
 
     nushell = {
       enable = true;
-      extraConfig = ''
-        # Disable banner
-        $env.config = {
-          show_banner: false
-        }
-
-        # Toggle in-built keyboard
-        def kb-toggle [] {
-            let status_file = $"($env.XDG_RUNTIME_DIR)/keyboard.status"
-
-            if not ($status_file | path exists) {
-                "true" | save $status_file
-                ^hyprctl notify -1 2500 "rgb(ff0000)" "fontsize:16 Enabled Keyboard"
-                ^hyprctl keyword '$LAPTOP_KB_ENABLED' "true" -r
-            } else {
-                let current_status = open $status_file
-                if $current_status == "true" {
-                    "false" | save $status_file
-                    ^hyprctl notify -1 2500 "rgb(ff0000)" "fontsize:16 Disabled Keyboard"
-                    ^hyprctl keyword '$LAPTOP_KB_ENABLED' "false" -r
-                } else {
-                    "true" | save $status_file
-                    ^hyprctl notify -1 2500 "rgb(ff0000)" "fontsize:16 Enabled Keyboard"
-                    ^hyprctl keyword '$LAPTOP_KB_ENABLED' "true" -r
-                }
-            }
-        }
-
-        # Check status of in-built keyboard
-        def kb-status [] {
-            let status_file = $"($env.XDG_RUNTIME_DIR)/keyboard.status"
-            if ($status_file | path exists) {
-                open $status_file
-            } else {
-                echo "unknown"
-            }
-        }
-
-        $env.PATH = ($env.PATH | prepend $"($env.HOME)/.bun/bin")
-      '';
+      extraConfig = builtins.readFile ../extras/nushell/config.nu;
       shellAliases = {
         glog = "git log --graph --decorate --all --pretty=format:'%C(auto)%h%d %C(#888888)(%an; %ar)%Creset %s'";
       };
@@ -476,7 +252,7 @@
 
         # Your custom settings for Starship
         "$schema" = "https://starship.rs/config-schema.json";
-        
+
         bun = {
           format = "\\[[$symbol($version)]($style)\\]";
         };
@@ -637,62 +413,7 @@
         allow_markup = true;
         insensitive = true;
       };
-      style = ''
-                * {
-                font-family: Iosevka Nerd Font;
-                font-size: 10pt;
-        }
-
-        window {
-                margin: 0px;
-                border: 1px solid #5E5E5E;
-                background-color: #0d0c0d;
-                border-radius: 8px;
-        }
-
-        #input {
-                margin: 5px;
-                border: none;
-                background-color: #0d0c0d;
-                color: #FFFFFF;
-        }
-
-        #inner-box {
-                margin: 5px;
-                border: none;
-                background-color: transparent;
-        }
-
-        #outer-box {
-                margin: 0px;
-                border: none;
-                background-color: transparent;
-        }
-
-        #scroll {
-                margin: 0px;
-                border: none;
-        }
-
-        #text {
-                margin: 5px;
-                border: none;
-                color: #FFFFFF;
-        }
-
-        #entry {
-                border-radius: 5px;
-        }
-
-        #entry:selected {
-                background-color: #5E5E5E;
-        }
-
-        window {
-                box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.33);
-        }
-
-      '';
+      style = builtins.readFile ../extras/wofi/style.css;
     };
 
     bat = {
@@ -962,7 +683,7 @@
             formatter = {
               command = "${pkgs.alejandra}/bin/alejandra";
             };
-            language-servers = ["nil" "wakatime-ls"];
+            language-servers = ["nil-ls" "wakatime-ls"];
           }
 
           # Rust
@@ -980,10 +701,10 @@
             name = "html";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["html"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "html"];
             };
-            language-servers = ["html-languageserver" "wakatime-ls"];
+            language-servers = ["html-ls" "tailwindcss-ls" "wakatime-ls"];
           }
 
           # CSS
@@ -991,10 +712,10 @@
             name = "css";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["css"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "css"];
             };
-            language-servers = ["css-languageserver" "wakatime-ls"];
+            language-servers = ["css-ls" "tailwindcss-ls" "wakatime-ls"];
           }
 
           # JavaScript
@@ -1002,10 +723,10 @@
             name = "javascript";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["javascript"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "js"];
             };
-            language-servers = ["typescript-language-server" "wakatime-ls"];
+            language-servers = ["typescript-ls" "wakatime-ls"];
           }
 
           # TypeScript
@@ -1013,10 +734,10 @@
             name = "typescript";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["typescript"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "ts"];
             };
-            language-servers = ["typescript-language-server" "wakatime-ls"];
+            language-servers = ["typescript-ls" "wakatime-ls"];
           }
 
           # Svelte
@@ -1025,9 +746,9 @@
             auto-format = true;
             formatter = {
               command = "${pkgs.nodePackages.prettier}/bin/prettier";
-              args = ["--parser" "svelte"];
+              args = ["--plugin" "prettier-plugin-svelte" "--parser" "svelte"];
             };
-            language-servers = ["svelte-language-server" "wakatime-ls"];
+            language-servers = ["svelte-ls" "tailwindcss-ls" "wakatime-ls"];
           }
 
           # Astro
@@ -1036,9 +757,9 @@
             auto-format = true;
             formatter = {
               command = "${pkgs.nodePackages.prettier}/bin/prettier";
-              args = ["--parser" "astro"];
+              args = ["--plugin" "prettier-plugin-astro" "--parser" "astro"];
             };
-            language-servers = ["astro-ls" "wakatime-ls"];
+            language-servers = ["astro-ls" "tailwindcss-ls" "wakatime-ls"];
           }
 
           # JSX
@@ -1046,10 +767,10 @@
             name = "jsx";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["jsx"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "jsx"];
             };
-            language-servers = ["typescript-language-server" "wakatime-ls"];
+            language-servers = ["typescript-ls" "tailwindcss-ls" "wakatime-ls"];
           }
 
           # TSX
@@ -1057,10 +778,54 @@
             name = "tsx";
             auto-format = true;
             formatter = {
-              command = "${pkgs.prettierd}/bin/prettierd";
-              args = ["tsx"];
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "tsx"];
             };
-            language-servers = ["typescript-language-server" "wakatime-ls"];
+            language-servers = ["typescript-ls" "tailwindcss-ls" "wakatime-ls"];
+          }
+
+          # JSON
+          {
+            name = "json";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "json"];
+            };
+            language-servers = ["wakatime-ls"];
+          }
+
+          # JSONC
+          {
+            name = "jsonc";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" "jsonc"];
+            };
+            language-servers = ["wakatime-ls"];
+          }
+
+          # TOML
+          {
+            name = "toml";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.deno}/bin/deno";
+              args = ["fmt" "-" "--ext" ""];
+            };
+            language-servers = ["wakatime-ls"];
+          }
+
+          # Markdown
+          {
+            name = "markdown";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.taplo}/bin/taplo";
+              args = ["format" "-"];
+            };
+            language-servers = ["markdown-ls" "wakatime-ls"];
           }
 
           # Zig
@@ -1085,25 +850,32 @@
           }
         ];
         language-server = {
-          nil = {
+          "markdown-ls" = {
+            command = "${pkgs.marksman}/bin/marksman";
+          };
+          "nil-ls" = {
             command = "${pkgs.nil}/bin/nil";
           };
-          rust-analyzer = {
+          "rust-analyzer" = {
             command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           };
-          "html-languageserver" = {
+          "tailwindcss-ls" = {
+            command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
+            args = ["--stdio"];
+          };
+          "html-ls" = {
             command = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server";
             args = ["--stdio"];
           };
-          "css-languageserver" = {
+          "css-ls" = {
             command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
             args = ["--stdio"];
           };
-          "typescript-language-server" = {
+          "typescript-ls" = {
             command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
             args = ["--stdio"];
           };
-          "svelte-language-server" = {
+          "svelte-ls" = {
             command = "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver";
             args = ["--stdio"];
           };

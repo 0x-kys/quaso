@@ -18,6 +18,13 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; Backup Files
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+;; Autosave Files
+(setq auto-save-file-name-transforms
+  `((".*", temporary-file-directory t)))
+
 ;; Evil Mode for Vim-like Keybindings
 (use-package evil
   :init
