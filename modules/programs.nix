@@ -111,7 +111,7 @@
 
           "pulseaudio" = {
             format = " {volume}%";
-            format-mutes = " Muted";
+            format-muted = " Muted";
             format-icons = {
               default = ["" "" ""];
             };
