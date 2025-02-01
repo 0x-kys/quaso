@@ -603,6 +603,10 @@
         theme = "autumn_night_transparent";
         keys = {
           normal = {
+            "A-," = "goto_previous_buffer";
+            "A-." = "goto_next_buffer";
+            "A-w" = ":buffer-close";
+            "A-/" = "repeat_last_motion";
             g = {
               r = "goto_reference";
               d = "goto_definition";

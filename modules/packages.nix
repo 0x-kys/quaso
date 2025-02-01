@@ -97,6 +97,7 @@
       nixd
       nil
 
+      grimblast
       grim
       slurp
 

@@ -195,7 +195,7 @@ in {
             "$mainMod, J, togglesplit" # dwindle
 
             "SUPER_SHIFT, R, exec, hyprctl reload"
-            ", Print, exec, grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S').png | wl-copy"
+            ", Print, exec, grimblast --notify copy area"
 
             "$mainMod, left, movefocus, l"
             "$mainMod, right, movefocus, r"
