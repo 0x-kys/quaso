@@ -620,6 +620,8 @@
           };
         };
         editor = {
+          bufferline = "multiple";
+          true-color = true;
           completion-trigger-len = 1; # start completion after typing just one character
           completion-replace = true; # replace existing text with the completion
           end-of-line-diagnostics = "hint";
