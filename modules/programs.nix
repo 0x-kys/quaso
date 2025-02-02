@@ -81,8 +81,8 @@
           position = "top";
           height = 38;
 
-          modules-left = ["cpu" "memory" "temperature" "hyprland/workspaces"];
-          modules-center = ["wlr/taskbar"];
+          modules-left = ["cpu" "memory" "temperature" "hyprland/workspaces" "wlr/taskbar"];
+          modules-center = [];
           modules-right = ["pulseaudio" "network" "battery" "clock" "group/expand" "tray"];
 
           "hyprland/workspaces" = {
