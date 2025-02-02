@@ -1,6 +1,12 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
+      (writeScriptBin "cow" ''
+        #!/usr/bin/env bash
+
+        cowsay $(fortune)
+      '')
+
       newsflash
       (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
 

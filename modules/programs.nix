@@ -82,7 +82,7 @@
           height = 38;
 
           modules-left = ["cpu" "memory" "temperature" "hyprland/workspaces"];
-          modules-center = [];
+          modules-center = ["wlr/taskbar"];
           modules-right = ["pulseaudio" "network" "battery" "clock" "group/expand" "tray"];
 
           "hyprland/workspaces" = {
@@ -102,6 +102,15 @@
               "9" = "九";
               "10" = "十";
             };
+          };
+
+          "wlr/taskbar" = {
+            format = "{icon}";
+            icon-size = 24;
+            tooltip-format = "{title}";
+            on-click = "activate";
+            on-click-middle = "close";
+            sort-by-app-id = false; # We don't want to sort by app_id here, but by workspace
           };
 
           "tray" = {
