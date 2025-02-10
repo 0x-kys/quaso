@@ -1,5 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Key Bindings Overview:
+;; - SPC g r: Find references
+;; - SPC g d: Find definitions
+;; - SPC C-p: Projectile find file
+;; - SPC c a: Execute LSP code action
+;; - SPC r n: Rename with LSP
+;; - SPC <escape>: Go back to normal state in Evil mode
+;; - SPC f: Custom projectile find file
+;; - SPC s n: Run nushell
+
 ;; Basic Editor Settings
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
@@ -94,7 +104,16 @@
   (setq lsp-ui-doc-position 'top)
   (setq lsp-ui-sideline-enable nil)  ;; Disable sideline to avoid clutter
   (setq lsp-ui-flycheck-enable t)
-  (setq lsp-ui-peek-enable t))
+  (setq lsp-ui-peek-enable t)
+  (setq lsp-ui-doc-show-with-cursor t)  ;; Show doc with cursor
+  ;; Enable diagnostics in a popup
+  (setq lsp-ui-sideline-show-diagnostics t)
+  ;; Show diagnostics at the bottom
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-ignore-duplicate t)
+  ;; Adjust the position of the diagnostics
+  (setq lsp-ui-sideline-diagnostic-max-lines 10)  ;; Max number of lines to show for diagnostics
+  (add-hook 'lsp-mode-hook #'lsp-ui-mode))
 
 ;; Company (Completion Framework)
 (use-package company
@@ -189,6 +208,9 @@
 (use-package go-mode
   :mode "\\.go\\'"
   :hook (go-mode . lsp))
+
+(use-package elisp-lint
+  :hook (emacs-lisp-mode . lsp))
 
 (use-package zig-mode
   :mode "\\.zig\\'")

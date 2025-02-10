@@ -606,10 +606,25 @@
       enable = true;
     };
 
+    # picker
+    # ctrl+s -> horizontal
+    # ctrl+v -> vertical
+    # ctrl+t -> toggle preview
+    #
+    # mode: Insert
+    # ctrl+x -> trigger completion
+    # ctrl+r -> insert register
+    # ctrl+w | alt+backspace -> delete previous word
+    # alt+d | alt+delete -> delete next word
+    #
+    # mode: Normal
+    # ctrl+w+<left/right/up/down> -> move between splits
+    # ctrl+w+q -> close split
+
     helix = {
       enable = true;
       settings = {
-        theme = "autumn_night_transparent";
+        theme = "varua_transparent";
         keys = {
           normal = {
             "A-," = "goto_previous_buffer";
@@ -635,7 +650,8 @@
         editor = {
           bufferline = "multiple";
           true-color = true;
-          completion-trigger-len = 1; # start completion after typing just one character
+          # completion-trigger-len = 1; # start completion after typing just one character
+          auto-completion = false;
           completion-replace = true; # replace existing text with the completion
           end-of-line-diagnostics = "hint";
           inline-diagnostics = {
@@ -911,13 +927,21 @@
         };
       };
       themes = {
+        varua_transparent = {
+          "inherits" = "varua";
+          "ui.background" = {};
+        };
         autumn_night_transparent = {
           "inherits" = "autumn_night";
           "ui.background" = {};
 
           "type" = {
-            "background" = "none";
-            "foreground" = "#ffffff";
+            "bg" = "none";
+            "fg" = "#ffcc00";
+          };
+          "variable.type" = {
+            "bg" = "none";
+            "fg" = "#ffffff";
           };
         };
       };
