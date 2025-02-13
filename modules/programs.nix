@@ -5,7 +5,7 @@
 }: {
   programs = {
     emacs = {
-      enable = true;
+      enable = false;
       package = pkgs.emacs;
       extraPackages = epkgs: [
         epkgs.use-package
@@ -247,6 +247,7 @@
       extraConfig = builtins.readFile ../extras/nushell/config.nu;
       shellAliases = {
         glog = "git log --graph --decorate --all --pretty=format:'%C(auto)%h%d %C(#888888)(%an; %ar)%Creset %s'";
+        ff = "fastfetch -c examples/19.jsonc";
       };
     };
     carapace = {
@@ -479,54 +480,7 @@
 
     fastfetch = {
       enable = true;
-      settings = {
-        logo = {
-          source = "nix";
-          padding = {
-            right = 2;
-          };
-        };
-        display = {
-          size = {
-            binaryPrefix = "si";
-          };
-          color = "blue";
-          separator = "  ";
-        };
-        modules = [
-          # System information
-          "os"
-          "kernel"
-
-          "break"
-          "cpu"
-          "gpu"
-          "break"
-          "memory"
-          "break"
-          "terminal"
-          "wm"
-          "de"
-          "break"
-          # Date and time
-          {
-            type = "datetime";
-            key = "Date";
-            format = "{1}-{3}-{11}"; # YYYY-MM-DD
-          }
-          {
-            type = "datetime";
-            key = "Time";
-            format = "{14}:{17} {20}"; # HH:MM AM/PM
-          }
-          "break"
-          # Media information
-          "player"
-          "media"
-        ];
-      };
     };
-
     git = {
       enable = true;
 

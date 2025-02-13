@@ -274,6 +274,14 @@ in {
   };
 
   services = {
+    ollama = {
+      enable = true;
+      package = pkgs.ollama;
+      environmentVariables = {};
+      host = "127.0.0.1"; # or [::]
+      port = 11434;
+    };
+
     kanshi = {
       enable = true;
       package = pkgs.kanshi;
