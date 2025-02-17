@@ -6,6 +6,7 @@
     ./modules/home/desktop/waybar.nix
     ./modules/home/desktop/wofi.nix
     ./modules/home/desktop/dunst.nix
+    ./modules/home/editors/neovim.nix
     ./modules/home/editors/helix.nix
     ./modules/home/editors/zed.nix
     ./modules/home/editors/emacs.nix

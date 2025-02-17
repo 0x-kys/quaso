@@ -63,12 +63,12 @@
         splash_offset = 2.0;
 
         preload = [
-          "~/.config/nixcfg/wlppr/0.jpg"
+          "~/.config/nixcfg/wlppr/grv3.jpg"
         ];
 
         wallpaper = [
-          "eDP-1, ~/.config/nixcfg/wlppr/0.jpg"
-          "HDMI-A-1, ~/.config/nixcfg/wlppr/0.jpg"
+          "eDP-1, ~/.config/nixcfg/wlppr/grv3.jpg"
+          "HDMI-A-1, ~/.config/nixcfg/wlppr/grv3.jpg"
         ];
       };
     };
@@ -79,6 +79,24 @@
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    cursorTheme = {
+      name = "WhiteSur-cursors";
+      package = pkgs.whitesur-cursors;
     };
   };
 

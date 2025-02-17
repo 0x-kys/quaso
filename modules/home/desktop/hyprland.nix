@@ -24,7 +24,7 @@
       };
 
       exec-once = [
-        "pkill -f waybar && waybar &"
+        "waybar &"
         "waypaper --restore &"
         "kanshi &"
       ];
