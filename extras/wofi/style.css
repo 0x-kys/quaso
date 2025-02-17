@@ -1,20 +1,20 @@
 * {
-  font-family: Iosevka Nerd Font;
+  font-family: 0xProto Nerd Font;
   font-size: 10pt;
 }
 
 window {
   margin: 0px;
-  border: 1px solid #5e5e5e;
-  background-color: #0d0c0d;
+  border: 1px solid #928374; /* gray */
+  background-color: #1d2021; /* bg */
   border-radius: 8px;
 }
 
 #input {
   margin: 5px;
   border: none;
-  background-color: #0d0c0d;
-  color: #ffffff;
+  background-color: #1d2021; /* bg */
+  color: #d5c4a1; /* fg */
 }
 
 #inner-box {
@@ -37,7 +37,7 @@ window {
 #text {
   margin: 5px;
   border: none;
-  color: #ffffff;
+  color: #d5c4a1; /* fg */
 }
 
 #entry {
@@ -45,7 +45,7 @@ window {
 }
 
 #entry:selected {
-  background-color: #5e5e5e;
+  background-color: #928374; /* gray */
 }
 
 window {

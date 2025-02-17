@@ -3,37 +3,29 @@
     packages = with pkgs; [
       (writeScriptBin "cow" ''
         #!/usr/bin/env bash
-
         cowsay $(fortune)
       '')
-
       newsflash
       (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
-
       remmina
       nwg-displays
       waypaper
-
       brave
       spotify
       libreoffice
       obsidian
-
       playerctl
       tmux
       nnn
-
       zip
       xz
       unzip
       p7zip
-
       ripgrep
       jq
       yq-go
       eza
       fzf
-
       mtr
       iperf3
       dnsutils
@@ -42,7 +34,6 @@
       socat
       nmap
       ipcalc
-
       cowsay
       fortune
       file
@@ -53,25 +44,19 @@
       gawk
       zstd
       gnupg
-
       nix-output-monitor
-
       glow
-
       btop
       iotop
       iftop
-
       strace
       ltrace
       lsof
-
       sysstat
       lm_sensors
       ethtool
       pciutils
       usbutils
-
       go
       zig
       bun
@@ -81,11 +66,9 @@
       nodejs
       python3
       corepack
-
       obs-studio
       obs-studio-plugins.wlrobs
       obs-studio-plugins.obs-pipewire-audio-capture
-
       zls
       gopls
       pyright
@@ -102,11 +85,9 @@
       alejandra
       nixd
       nil
-
       grimblast
       grim
       slurp
-
       whitesur-cursors
       colloid-gtk-theme
       kanagawa-gtk-theme

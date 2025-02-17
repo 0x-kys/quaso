@@ -17,18 +17,18 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #cdcdcd;
+  color: #d5c4a1; /* fg */
   padding: 2px 8px;
   margin: 0 2px;
   font-size: 14px;
-  background: #0d0c0d;
+  background: #1d2021; /* bg */
   border-radius: 4px;
-  border: 1px solid rgba(94, 94, 94, 0.2);
+  border: 1px solid rgba(146, 131, 116, 0.2); /* gray */
 }
 
 #workspaces button.active {
-  background: #252425;
-  border: 1px solid rgba(94, 94, 94, 0.6);
+  background: #32302f; /* darker bg shade */
+  border: 1px solid rgba(146, 131, 116, 0.6); /* gray */
 }
 
 #pulseaudio,
@@ -45,13 +45,13 @@ window#waybar {
 #custom-hibernate,
 #custom-reboot,
 #custom-exit_hyprland {
-  background: #0d0c0d;
+  background: #1d2021; /* bg */
   padding: 2px 8px;
   margin-left: 2px;
   margin-right: 2px;
   margin-top: 4px;
   border-radius: 4px;
-  border: 1px solid rgba(94, 94, 94, 0.2);
+  border: 1px solid rgba(146, 131, 116, 0.2); /* gray */
 }
 
 #custom-swaylock,
@@ -60,92 +60,92 @@ window#waybar {
 #custom-reboot,
 #custom-exit_hyprland {
   font-size: 14px;
-  color: #ffffff;
+  color: #d5c4a1; /* fg */
 }
 
 #custom-swaylock {
-  color: #8be9fd;
+  color: #83a598; /* blue */
 }
 
 #custom-suspend {
-  color: #bd93f9;
+  color: #d3869b; /* purple */
 }
 
 #custom-hibernate {
-  color: #50fa7b;
+  color: #b8bb26; /* green */
 }
 
 #custom-exit_hyprland {
-  color: #ff5555;
+  color: #fb4934; /* red */
 }
 
 #custom-reboot {
-  color: #8be9fd;
+  color: #83a598; /* blue */
 }
 
 #pulseaudio,
 #tray {
-  color: #cdcdcd;
+  color: #d5c4a1; /* fg */
 }
 
 #custom-power {
   margin-right: 10px;
-  color: #ff5555;
+  color: #fb4934; /* red */
 }
 
 #cpu,
 #memory,
 #temperature {
-  color: #cdcdcd;
+  color: #d5c4a1; /* fg */
 }
 
 #network {
-  color: #bd93f9;
+  color: #d3869b; /* purple */
 }
 
 #battery {
-  color: #f1fa8c;
+  color: #fabd2f; /* yellow */
 }
 
 #battery.charging {
-  color: #50fa7b;
+  color: #b8bb26; /* green */
 }
 
 #battery.warning:not(.charging) {
-  color: #ffb86c;
+  color: #fe8019; /* orange */
 }
 
 #battery.critical:not(.charging) {
-  color: #ff5555;
+  color: #fb4934; /* red */
 }
 
 #clock {
-  color: #8be9fd;
+  color: #83a598; /* blue */
 }
 
 #custom-expand,
 #custom-endpoint {
-  background: #0d0c0d;
+  background: #1d2021; /* bg */
   padding: 2px 8px;
   margin-left: 2px;
   margin-right: 2px;
   margin-top: 4px;
   border-radius: 4px;
-  color: #ffffff;
-  border: 1px solid rgba(94, 94, 94, 0.2);
+  color: #d5c4a1; /* fg */
+  border: 1px solid rgba(146, 131, 116, 0.2); /* gray */
 }
 
 #wlr-taskbar {
-  background: #0d0c0d;
+  background: #1d2021; /* bg */
   padding: 2px 8px;
   margin-left: 2px;
   margin-right: 2px;
   margin-top: 4px;
   border-radius: 4px;
-  border: 1px solid rgba(94, 94, 94, 0.2);
+  border: 1px solid rgba(146, 131, 116, 0.2); /* gray */
 }
 
 #wlr-taskbar.active {
-  background: #252425;
-  border: 1px solid rgba(94, 94, 94, 0.6);
+  background: #32302f; /* darker bg shade */
+  border: 1px solid rgba(146, 131, 116, 0.6); /* gray */
 }
