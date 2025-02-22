@@ -59,7 +59,7 @@
 
   environment = {
     sessionVariables = {NIXOS_OZONE_WL = "1";};
-    variables = {EDITOR = "hx";};
+    variables = {EDITOR = "nvim";};
     systemPackages = with pkgs; [
       vim
       curl

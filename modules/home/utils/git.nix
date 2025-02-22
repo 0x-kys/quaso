@@ -42,7 +42,7 @@
 
     extraConfig = {
       core = {
-        editor = "hx";
+        editor = "nvim";
       };
       pull = {
         rebase = true;
