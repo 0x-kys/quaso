@@ -6,12 +6,17 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 38;
-
-        modules-left = [];
-        modules-center = ["hyprland/workspaces" "cpu" "memory" "temperature" "pulseaudio" "network" "battery" "clock" "group/expand" "tray"];
-        modules-right = [];
-
+        height = 32;
+        margin-top = 6;
+        margin-left = 6;
+        margin-right = 6;
+        modules-left = ["custom/nixos" "cpu" "memory" "temperature"];
+        modules-center = ["hyprland/workspaces"];
+        modules-right = ["pulseaudio" "network" "battery" "clock" "tray" "group/expand"];
+        "custom/nixos" = {
+          format = "󱄅";
+          tooltip = false;
+        };
         "hyprland/workspaces" = {
           format = "{icon}";
           on-click = "activate";
@@ -30,71 +35,50 @@
             "10" = "十";
           };
         };
-
-        "wlr/taskbar" = {
-          format = "{icon}";
-          icon-size = 24;
-          tooltip-format = "{title}";
-          on-click = "activate";
-          on-click-middle = "close";
-          sort-by-app-id = false;
-        };
-
-        "tray" = {
-          icon-size = 16;
-          spacing = 10;
-        };
-
         "pulseaudio" = {
-          format = " {volume}%";
-          format-muted = " Muted";
+          format = "󰕾 {volume}%";
+          format-muted = "󰖁 Muted";
           format-icons = {
-            default = ["" "" ""];
+            default = ["󰕿" "󰖀" "󰕾"];
           };
           on-click = "pavucontrol";
         };
-
         "network" = {
-          format-wifi = " {essid}";
-          format-ethernet = "󰈀 {ifname}";
-          format-disconnected = "";
+          format-wifi = "󰖩 {essid}";
+          format-ethernet = "󰈁 {ifname}";
+          format-disconnected = "󰈂";
           tooltip-format = "{ifname} via {gwaddr}";
           tooltip-format-wifi = "{essid} ({signalStrength}%)";
           tooltip-format-ethernet = "{ifname}";
           tooltip-format-disconnected = "Disconnected";
-          max-length = 50;
+          max-length = 15;
         };
-
         "cpu" = {
           format = " {usage}%";
           tooltip = true;
           interval = 1;
         };
-
         "memory" = {
-          format = " {}%";
+          format = " {}%";
           tooltip-format = "{used:0.1f}GB/{total:0.1f}GB";
         };
-
         "temperature" = {
           critical-threshold = 80;
           hwmon-path = ["/sys/class/hwmon/hwmon0/temp1_input"];
-          format = "{temperatureC}°C {icon}";
+          format = " {temperatureC}°C";
           format-icons = ["" "" ""];
         };
-
         "battery" = {
           states = {
             good = 80;
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format = " {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
           format-icons = ["" "" "" "" ""];
         };
-
         "clock" = {
           format = "{:%I:%M %p}";
           format-alt = "{:%Y-%m-%d}";
@@ -104,18 +88,21 @@
             weeks-pos = "right";
             on-scroll = 1;
             format = {
-              months = "<span color='#ffead3'><b>{}</b></span>";
-              weeks = "<span color='#99ffdd'><b>{}</b></span>";
-              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-              today = "<span color='#ff6699'><b>{}</b></span>";
+              months = "<span color='#ebdbb2'><b>{}</b></span>";
+              weeks = "<span color='#83a598'><b>{}</b></span>";
+              weekdays = "<span color='#d79921'><b>{}</b></span>";
+              today = "<span color='#fb4934'><b>{}</b></span>";
             };
           };
         };
-
+        "tray" = {
+          icon-size = 16;
+          spacing = 4;
+        };
         "group/expand" = {
           orientation = "horizontal";
           drawer = {
-            transition-duration = 600;
+            transition-duration = 500;
             transition-to-left = true;
             click-to-reveal = true;
           };
@@ -129,18 +116,17 @@
             "custom/endpoint"
           ];
         };
-
         "custom/expand" = {
-          format = "";
+          format = "";
           tooltip = false;
         };
         "custom/endpoint" = {
-          format = "|";
+          format = "";
           tooltip = false;
         };
         "custom/swaylock" = {
-          format = "󰌾";
-          on-click = "swaylock --screenshots --clock --datestr \"%a %e.%m.%Y\" --timestr \"%I:%M %p\" --effect-blur 10x2 --indicator";
+          format = "";
+          on-click = "swaylock --screenshots --clock --datestr \"%a %e.%m.%Y\" --timestr \"%H:%M\" --effect-blur 10x2 --indicator";
           tooltip = false;
         };
         "custom/suspend" = {
@@ -149,17 +135,17 @@
           tooltip = false;
         };
         "custom/hibernate" = {
-          format = "󰤄";
+          format = "";
           on-click = "systemctl hibernate";
           tooltip = false;
         };
         "custom/reboot" = {
-          format = "󰑓";
+          format = "";
           on-click = "systemctl reboot";
           tooltip = false;
         };
         "custom/exit_hyprland" = {
-          format = "󰈸";
+          format = "";
           on-click = "hyprctl dispatch exit";
           tooltip = false;
         };

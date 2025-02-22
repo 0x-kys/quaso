@@ -212,6 +212,7 @@ require("dashboard").setup({
 			{ desc = "Recent Files", group = "DashboardShortCut", key = "r", action = "Telescope oldfiles" },
 			{ desc = "Find File", group = "DashboardShortCut", key = "f", action = "Telescope find_files" },
 		},
+		footer = {}, -- Override default footer to remove number of loaded plugins
 	},
 })
 
