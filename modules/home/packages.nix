@@ -5,6 +5,8 @@
         #!/usr/bin/env bash
         cowsay $(fortune)
       '')
+      teamviewer
+      anydesk
       newsflash
       (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
       remmina

@@ -17,6 +17,8 @@ vim.o.showtabline = 2
 vim.o.cursorline = true
 vim.o.showmode = false
 vim.o.signcolumn = "yes"
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Theme and Transparency
 vim.cmd([[colorscheme gruvbox]])
@@ -157,12 +159,54 @@ require("nvim-treesitter.configs").setup({
 vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 
 -- Dashboard
+math.randomseed(os.time()) -- Seed random generator for variety
+
+local function get_fortune_quote()
+	-- Call fortune with -s for short quotes (default max 160 chars) and -n to set a specific length
+	local max_length = 80
+	local fortune_cmd = string.format("fortune -s -n %d", max_length)
+
+	-- Execute the command and capture output
+	local quote = vim.fn.system(fortune_cmd)
+
+	-- Clean up the output: remove trailing newlines and ensure it’s a single line
+	quote = quote:gsub("\n$", ""):gsub("\n.*", "") -- Keep only the first line
+
+	-- Fallback if fortune fails or isn’t installed
+	if quote == "" or vim.v.shell_error ~= 0 then
+		return "Code is poetry, when it works."
+	end
+
+	-- Ensure the quote fits within max_length (truncate if needed)
+	if #quote > max_length then
+		quote = quote:sub(1, max_length - 3) .. "..."
+	end
+
+	return quote
+end
+
 require("dashboard").setup({
 	theme = "hyper",
 	config = {
 		header = {
-			"Welcome to Neovim!",
-			"",
+			"⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+			"⠀⠀⠀⢠⠀⠉⠒⠤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+			"⠀⠀⠀⢸⢳⡀⠀⠀⠀⠁⠒⠀⠀⠤⠄⣀⣀⣀⡀⠀⠠⣄",
+			"⠀⠀⠀⢸⠁⢳⣴⠂⢀⣀⠀⣀⠀⠀⠀⠈⠑⠀⠀⠀⢀⡎",
+			"⠀⠀⠀⢸⣤⡼⠁⢰⠁⠸⡇⢀⠇⠀⢔⠉⣷⠢⣠⣶⣿⠁",
+			"⠀⠀⠀⣸⣿⠁⠀⠈⠁⠀⠉⠁⠐⣻⣫⠒⠯⡠⠛⣿⠃⠀",
+			"⠀⠀⢰⣿⣿⣤⣤⡤⠤⣖⡂⠉⠉⠀⠈⢓⣄⠀⠈⡃⠀⠀",
+			"⠀⠀⠀⢻⣧⣿⡋⣒⠂⠒⠁⡀⠀⢀⠈⠩⣀⣱⣼⠀⠀⠀",
+			"⠀⠀⠀⠀⣯⣵⣙⢦⣀⠀⠀⠈⠉⠉⠀⠀⣐⣼⡿⠀⠀⠀",
+			"⠀⠀⠀⠀⠻⣿⣋⣙⣛⣿⣶⣀⣲⣶⣾⣿⣿⡯⠀⠀⠀⠀",
+			"⠀⠀⠀⠀⠀⠀⣹⢿⡞⠛⣿⣿⢿⡟⢻⠛⠋⠁⠀⠀⠀⠀",
+			"⢠⣀⠀⠀⠀⢠⣿⣿⣴⣪⣁⣸⠉⢣⣸⠀⠀⠀⠀⠀⠀⠀",
+			"⠈⠒⠈⠩⠭⠿⢏⡙⠛⠛⠛⠛⠛⠛⢻⠀⠀⠀⠀⠀⠀⠀",
+			"⠀⠀⠀⠀⠀⠀⠘⣇⡸⠀⠒⠒⠲⡀⡎⠀⠀⠀⠀⠀⠀⠀",
+			"⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀",
+			"", -- Empty line for spacing
+			get_fortune_quote(),
+			"", -- Empty line after the quote
 		},
 		shortcut = {
 			{ desc = "Recent Files", group = "DashboardShortCut", key = "r", action = "Telescope oldfiles" },

@@ -8,9 +8,9 @@
         position = "top";
         height = 38;
 
-        modules-left = ["cpu" "memory" "temperature" "hyprland/workspaces"];
-        modules-center = [];
-        modules-right = ["pulseaudio" "network" "battery" "clock" "group/expand" "tray"];
+        modules-left = [];
+        modules-center = ["hyprland/workspaces" "cpu" "memory" "temperature" "pulseaudio" "network" "battery" "clock" "group/expand" "tray"];
+        modules-right = [];
 
         "hyprland/workspaces" = {
           format = "{icon}";
