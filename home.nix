@@ -21,8 +21,8 @@
   ];
 
   home = {
-    username = "syk";
-    homeDirectory = "/home/syk";
+    username = ""; # TODO: YOUR USERNAME
+    homeDirectory = "/home/<username>"; # TODO: YOUR HOME DIRECTORY PATH
     stateVersion = "24.11";
   };
 

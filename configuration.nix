@@ -21,21 +21,6 @@
     };
   };
 
-  fileSystems = {
-    "/run/media/syk/hdd" = {
-      device = "/dev/sda1";
-      fsType = "exfat";
-      options = [
-        "defaults"
-        "x-gvfs-show"
-        "uid=1000"
-        "gid=100"
-        "dmask=007"
-        "fmask=117"
-      ];
-    };
-  };
-
   time = {timeZone = "Asia/Kolkata";};
 
   i18n = {

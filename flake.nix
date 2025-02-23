@@ -22,7 +22,8 @@
     ...
   }: {
     nixosConfigurations = {
-      nix = nixpkgs.lib.nixosSystem {
+      # NOTE: keep the name here same as hostname for ease of system management
+      nixbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix

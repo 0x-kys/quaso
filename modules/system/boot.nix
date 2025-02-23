@@ -1,9 +1,12 @@
 {pkgs, ...}: {
   boot = {
-    resumeDevice = "/dev/disk/by-uuid/ad7e4cc1-4366-40f7-8c21-2428bed2b43e";
+    # NOTE: Replace with your swap partition; use 'lsblk' to find it & use `sudo blkid /dev/swap/parition` to find UUID
+    # resumeDevice = "/dev/disk/by-uuid/<UUID_HERE>";
     kernelParams = [
-      "amdgpu.dc=1"
-      "mem_sleep_default=deep"
+      "i915.enable_psr=1" # Enable Panel Self Refresh for power savings (Intel graphics)
+      "i915.enable_fbc=1" # Enable Framebuffer Compression (Intel graphics, power efficiency)
+      "mem_sleep_default=deep" # Keep this for deep sleep states (hibernation support)
+      "acpi_backlight=vendor" # May help with backlight control on Intel MacBooks
     ];
     loader = {
       systemd-boot = {
