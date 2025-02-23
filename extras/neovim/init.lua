@@ -207,12 +207,15 @@ require("dashboard").setup({
 			"", -- Empty line for spacing
 			get_fortune_quote(),
 			"", -- Empty line after the quote
+			"", -- Empty line after the quote
 		},
+		packages = { enable = false }, -- Disable number of plugins loaded
 		shortcut = {
 			{ desc = "Recent Files", group = "DashboardShortCut", key = "r", action = "Telescope oldfiles" },
 			{ desc = "Find File", group = "DashboardShortCut", key = "f", action = "Telescope find_files" },
 		},
-		footer = {}, -- Override default footer to remove number of loaded plugins
+		mru = { enable = true, limit = 10, label = "Recent Files", cwd_only = false },
+		footer = {},
 	},
 })
 

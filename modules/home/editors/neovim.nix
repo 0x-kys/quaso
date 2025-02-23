@@ -37,6 +37,9 @@
 
       indent-blankline-nvim # indent blankline
       mini-nvim # mini icons
+
+      # WakaTime Plugin
+      vim-wakatime
     ];
 
     # Extra packages to make LSP, formatters, and other tools work
@@ -72,6 +75,9 @@
       # Clipboard support
       xclip # X11 clipboard support
       wl-clipboard # Wayland clipboard support
+
+      # WakaTime CLI
+      wakatime
     ];
 
     # Extra Lua configuration
