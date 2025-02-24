@@ -9,7 +9,7 @@
         geometry = "200x20-10+10";
         indicate_hidden = "yes";
 
-        background = "#1d2021"; # bg
+        background = "#1b1b1b"; # bg
         foreground = "#d5c4a1"; # fg
 
         font = "0xProto Nerd Font 8";
@@ -39,17 +39,17 @@
       };
 
       urgency_low = {
-        background = "#1d2021"; # bg
+        background = "#1b1b1b"; # bg
         foreground = "#928374"; # gray
         timeout = 5;
       };
       urgency_normal = {
-        background = "#1d2021"; # bg
+        background = "#1b1b1b"; # bg
         foreground = "#d5c4a1"; # fg
         timeout = 10;
       };
       urgency_critical = {
-        background = "#1d2021"; # bg
+        background = "#1b1b1b"; # bg
         foreground = "#d5c4a1"; # fg
         frame_color = "#fb4934"; # red
         timeout = 0;
