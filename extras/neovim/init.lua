@@ -618,6 +618,11 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- Move between buffers
+vim.keymap.set("n", "<A-,>", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<A-.>", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<A-w>", "<cmd>BufferClose<CR>", { desc = "Close buffer" })
+
 -- Telescope keymaps (Adapted from Kickstart.nvim)
 -- Telescope Setup
 require("telescope").setup({
