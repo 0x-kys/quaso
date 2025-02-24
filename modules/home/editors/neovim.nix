@@ -9,6 +9,7 @@
       # Theme
       gruvbox-material
 
+      vim-sleuth
       gitsigns-nvim
       todo-comments-nvim
       indent-blankline-nvim
