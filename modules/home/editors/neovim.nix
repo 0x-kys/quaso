@@ -7,7 +7,11 @@
 
     plugins = with pkgs.vimPlugins; [
       # Theme
-      gruvbox-community
+      gruvbox-material
+
+      gitsigns-nvim
+      todo-comments-nvim
+      indent-blankline-nvim
 
       # Statusline with Nerd Icons
       lualine-nvim
@@ -15,14 +19,23 @@
 
       # LSP and Diagnostics
       nvim-lspconfig
-      trouble-nvim # For error lens and diagnostics
+      trouble-nvim
+      lsp_signature-nvim
+
+      # Autocompletion and Snippets
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      luasnip
+      cmp_luasnip
 
       # Tree-sitter
       nvim-treesitter.withAllGrammars
 
-      # Telescope for file and buffer pickers
+      # Telescope
       telescope-nvim
-      plenary-nvim # Dependency for Telescope
+      plenary-nvim
 
       # Dashboard
       dashboard-nvim
@@ -30,57 +43,54 @@
       # Tab bar management
       barbar-nvim
 
-      nvim-lint # linting
-      conform-nvim # formatting
-      lsp_signature-nvim # signature help
-      nvim-navic # breadcrumbs
-
-      indent-blankline-nvim # indent blankline
-      mini-nvim # mini icons
+      # Additional Utilities
+      nvim-lint
+      conform-nvim
+      nvim-navic
+      mini-nvim
+      which-key-nvim # Added Which-Key
 
       # WakaTime Plugin
       vim-wakatime
     ];
 
-    # Extra packages to make LSP, formatters, and other tools work
     extraPackages = with pkgs; [
       # LSP Servers
-      nil # Nix
-      lua-language-server # Lua
-      gopls # Go
-      pyright # Python
-      clang-tools # C/C++
-      svelte-language-server # Svelte
-      nodePackages.typescript-language-server # JS/TS
-      nodePackages.vscode-langservers-extracted # CSS/HTML
-      zig # Zig
-      tailwindcss-language-server # Tailwind CSS
-      marksman # Markdown
-      rust-analyzer # Rust
-      astro-language-server # Astro
+      nil
+      lua-language-server
+      gopls
+      pyright
+      clang-tools
+      svelte-language-server
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+      zig
+      tailwindcss-language-server
+      marksman
+      rust-analyzer
+      astro-language-server
 
       # Formatters
-      alejandra # Nix
-      rustfmt # Rust
-      deno # JS/TS/HTML/CSS
-      nodePackages.prettier # Svelte/Astro
-      taplo # TOML
-      gofumpt # Go
-      stylua # Lua
+      alejandra
+      rustfmt
+      deno
+      nodePackages.prettier
+      taplo
+      gofumpt
+      stylua
 
       # Telescope dependencies
-      ripgrep # faster file searching
-      fd # faster file finding
+      ripgrep
+      fd
 
       # Clipboard support
-      xclip # X11 clipboard support
-      wl-clipboard # Wayland clipboard support
+      xclip
+      wl-clipboard
 
       # WakaTime CLI
       wakatime
     ];
 
-    # Extra Lua configuration
     extraConfig = let
       neovimLuaConfig = builtins.readFile ../../../extras/neovim/init.lua;
     in ''
