@@ -97,6 +97,7 @@
       graphite-gtk-theme
       papirus-icon-theme
       nwg-look
+      hyprpanel
     ];
   };
 }

@@ -1,15 +1,16 @@
 {pkgs, ...}: {
   programs.waybar = {
-    enable = true;
+    enable = false;
     package = pkgs.waybar;
     settings = {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 32;
-        margin-top = 6;
-        margin-left = 6;
-        margin-right = 6;
+        height = 36;
+        spacing = 4;
+        margin-top = 8;
+        margin-left = 8;
+        margin-right = 8;
         modules-left = ["custom/nixos" "cpu" "memory" "temperature"];
         modules-center = ["hyprland/workspaces"];
         modules-right = ["pulseaudio" "network" "battery" "clock" "tray" "group/expand"];
@@ -62,12 +63,6 @@
           format = " {}%";
           tooltip-format = "{used:0.1f}GB/{total:0.1f}GB";
         };
-        "temperature" = {
-          critical-threshold = 80;
-          hwmon-path = ["/sys/class/hwmon/hwmon0/temp1_input"];
-          format = " {temperatureC}°C";
-          format-icons = ["" "" ""];
-        };
         "battery" = {
           states = {
             good = 80;
@@ -102,7 +97,7 @@
         "group/expand" = {
           orientation = "horizontal";
           drawer = {
-            transition-duration = 500;
+            transition-duration = 300;
             transition-to-left = true;
             click-to-reveal = true;
           };

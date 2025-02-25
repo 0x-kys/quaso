@@ -24,9 +24,9 @@
       };
 
       exec-once = [
-        "waybar &"
-        "waypaper --restore &"
-        "kanshi &"
+        "hyprpanel"
+        "waypaper --restore"
+        "kanshi"
       ];
 
       env = [

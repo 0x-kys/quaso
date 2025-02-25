@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.dunst = {
-    enable = true;
+    enable = false;
     package = pkgs.dunst;
     settings = {
       global = {

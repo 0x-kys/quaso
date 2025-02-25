@@ -4,6 +4,7 @@
     ./modules/home/packages.nix
     ./modules/home/desktop/hyprland.nix
     ./modules/home/desktop/waybar.nix
+    ./modules/home/desktop/hyprpanel.nix
     ./modules/home/desktop/wofi.nix
     ./modules/home/desktop/dunst.nix
     ./modules/home/editors/neovim.nix
@@ -17,6 +18,7 @@
     ./modules/home/utils/bat.nix
     ./modules/home/utils/fastfetch.nix
     ./modules/home/utils/git.nix
+    ./modules/home/utils/cava.nix
     ./modules/shared/config.nix
   ];
 

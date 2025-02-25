@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs = {nixpkgs = {follows = "nixpkgs";};};
     };
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs = {nixpkgs = {follows = "nixpkgs";};};
+    };
     wakatime-ls = {
       url = "github:mrnossiom/wakatime-ls";
       inputs = {nixpkgs = {follows = "nixpkgs";};};
@@ -18,6 +22,7 @@
   outputs = inputs @ {
     nixpkgs,
     home-manager,
+    hyprpanel,
     wakatime-ls,
     ...
   }: {
@@ -34,8 +39,14 @@
               useUserPackages = true;
               backupFileExtension = "backup";
               users.syk = import ./home.nix;
-              extraSpecialArgs = {inherit inputs;};
+              extraSpecialArgs = {
+                inherit inputs;
+              };
             };
+
+            nixpkgs.overlays = [
+              hyprpanel.overlay
+            ];
           }
         ];
       };
