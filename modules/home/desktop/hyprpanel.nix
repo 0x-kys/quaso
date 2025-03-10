@@ -116,7 +116,7 @@
       bar.notifications.show_total = true;
       bar.battery.hideLabelWhenFull = true;
       menus.dashboard.controls.enabled = true;
-      menus.dashboard.shortcuts.enabled = true;
+      menus.dashboard.shortcuts.enabled = false;
       menus.dashboard.shortcuts.right.shortcut1.command = "sleep 0.5 && hyprpicker -a";
       menus.media.displayTime = true;
       menus.power.lowBatteryNotification = true;

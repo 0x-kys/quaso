@@ -5,6 +5,8 @@
         #!/usr/bin/env bash
         cowsay $(fortune)
       '')
+      onefetch
+      gerbv
       teamviewer
       anydesk
       newsflash

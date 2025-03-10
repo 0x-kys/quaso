@@ -13,6 +13,7 @@
       gitsigns-nvim
       todo-comments-nvim
       indent-blankline-nvim
+      friendly-snippets
 
       # Statusline with Nerd Icons
       lualine-nvim

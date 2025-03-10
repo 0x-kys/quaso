@@ -40,6 +40,10 @@
       mouse = {accelProfile = "flat";};
       touchpad = {accelProfile = "flat";};
     };
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+    };
   };
 
   programs = {

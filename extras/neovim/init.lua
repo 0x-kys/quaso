@@ -4,10 +4,11 @@ vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
-vim.opt.number = true    -- enable line numbers
-vim.opt.mouse = "a"      -- enable mouse support
+vim.opt.number = true         -- enable line numbers
+vim.opt.relativenumber = true -- make line number relative
+vim.opt.mouse = "a"           -- enable mouse support
 
-vim.opt.showmode = false -- do not show the mode (already in the statusline)
+vim.opt.showmode = false      -- do not show the mode (already in the statusline)
 
 -- sync clipboard between OS and Neovim
 --
@@ -34,8 +35,13 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+-- tabspace
+vim.opt.tabstop = 2          -- number of spaces a tab count for
+vim.opt.shiftwidth = 2       -- number of spaces for each indent
+vim.opt.expandtab = true     -- use space instead of tabs (common)
+
 vim.opt.inccommand = "split" -- preview substitutions love, as you type!
-vim.opt.cursorline = ture    -- show which line your cursor is on
+vim.opt.cursorline = true    -- show which line your cursor is on
 vim.opt.scrolloff = 10       -- minimal number of screen lines to keep above and below the cursor
 
 -- Theme Setup
@@ -245,6 +251,8 @@ local luasnip = require("luasnip")
 
 require("luasnip.loaders.from_vscode").lazy_load() -- load snippet support
 
+luasnip.filetype_extend("javascript", { "jsdoc" })
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -277,11 +285,24 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
-  sources = {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+  }),
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
   },
 })
 
