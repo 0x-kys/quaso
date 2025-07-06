@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home = {
     file = {
       ".icons/WhiteSur-cursors" = {
@@ -11,10 +15,22 @@
   xdg.configFile = let
     configDir = "${config.home.homeDirectory}/.config/nixcfg";
     configPaths = [
-      {name = "glow"; path = "${configDir}/extras/glow";}
-      {name = "wlppr"; path = "${configDir}/extras/wlppr";}
-      {name = "scripts"; path = "${configDir}/extras/scripts";}
-      {name = "btop"; path = "${configDir}/extras/btop";}
+      {
+        name = "glow";
+        path = "${configDir}/extras/glow";
+      }
+      {
+        name = "wlppr";
+        path = "${configDir}/extras/wlppr";
+      }
+      {
+        name = "scripts";
+        path = "${configDir}/extras/scripts";
+      }
+      {
+        name = "btop";
+        path = "${configDir}/extras/btop";
+      }
       # {name = "emacs"; path = "${configDir}/extras/emacs";}
       # {name = "nushell"; path = "${configDir}/extras/nushell";}
       # {name = "tmux"; path = "${configDir}/extras/tmux";}

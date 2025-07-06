@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
@@ -9,22 +8,20 @@
         position = "top";
         height = 36;
         spacing = 4;
-        margin-top = 2;
-        margin-left = 2;
-        margin-right = 2;
         modules-left = [
           "custom/nixos"
           "cpu"
           "memory"
           "temperature"
         ];
-        modules-center = [ "hyprland/workspaces" ];
+        modules-center = ["hyprland/workspaces"];
         modules-right = [
           "pulseaudio"
           "network"
           "battery"
           "clock"
           "tray"
+          "custom/notification"
           "group/expand"
         ];
         "custom/nixos" = {
@@ -79,6 +76,22 @@
         "memory" = {
           format = " {}%";
           tooltip-format = "{used:0.1f}GB/{total:0.1f}GB";
+        };
+        "custom/notification" = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
+            none = "";
+            dnd-notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
+            dnd-none = "";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "sleep 0.1 && swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
         };
         "battery" = {
           states = {

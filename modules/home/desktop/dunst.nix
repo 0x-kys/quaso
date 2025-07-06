@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.dunst = {
     enable = false;
     package = pkgs.dunst;
@@ -31,8 +30,8 @@
           "do_action"
           "close_current"
         ];
-        mouse_middle_click = [ "close_current" ];
-        mouse_right_click = [ "close_all" ];
+        mouse_middle_click = ["close_current"];
+        mouse_right_click = ["close_all"];
 
         layer = "overlay";
         force_wayland = false;

@@ -116,7 +116,7 @@
       papirus-icon-theme
       nwg-look
       inputs.zen-browser.packages."${system}".default
-      river
+      slack
     ];
   };
 
