@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.zen-browser.homeModules.beta
+    # or inputs.zen-browser.homeModules.twilight
+    # or inputs.zen-browser.homeModules.twilight-official
+  ];
+
   home = {
     packages = with pkgs; [
       (writeScriptBin "cow" ''
@@ -10,7 +20,13 @@
       teamviewer
       anydesk
       newsflash
-      (prismlauncher.override {jdks = [jdk8 jdk17 jdk21];})
+      (prismlauncher.override {
+        jdks = [
+          jdk8
+          jdk17
+          jdk21
+        ];
+      })
       remmina
       nwg-displays
       waypaper
@@ -67,7 +83,7 @@
       cmake
       clang
       rustup
-      nodejs
+      nodejs_24
       python3
       corepack
       obs-studio
@@ -99,7 +115,10 @@
       graphite-gtk-theme
       papirus-icon-theme
       nwg-look
-      hyprpanel
+      inputs.zen-browser.packages."${system}".default
+      river
     ];
   };
+
+  programs.zen-browser.enable = true;
 }

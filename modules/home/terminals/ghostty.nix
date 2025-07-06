@@ -1,11 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.ghostty = {
     enable = true;
     package = pkgs.ghostty;
     settings = {
       theme = "GruvboxDarkHard";
       font-size = 10;
-      font-family = "0xProto Nerd Font";
+      font-family = "JetBrainsMono Nerd Font";
       keybind = [
         "ctrl+h=goto_split:left"
         "ctrl+l=goto_split:right"

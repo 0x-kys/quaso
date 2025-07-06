@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.waybar = {
-    enable = false;
+    enable = true;
     package = pkgs.waybar;
     settings = {
       mainBar = {
@@ -8,12 +9,24 @@
         position = "top";
         height = 36;
         spacing = 4;
-        margin-top = 8;
-        margin-left = 8;
-        margin-right = 8;
-        modules-left = ["custom/nixos" "cpu" "memory" "temperature"];
-        modules-center = ["hyprland/workspaces"];
-        modules-right = ["pulseaudio" "network" "battery" "clock" "tray" "group/expand"];
+        margin-top = 2;
+        margin-left = 2;
+        margin-right = 2;
+        modules-left = [
+          "custom/nixos"
+          "cpu"
+          "memory"
+          "temperature"
+        ];
+        modules-center = [ "hyprland/workspaces" ];
+        modules-right = [
+          "pulseaudio"
+          "network"
+          "battery"
+          "clock"
+          "tray"
+          "group/expand"
+        ];
         "custom/nixos" = {
           format = "󱄅";
           tooltip = false;
@@ -40,7 +53,11 @@
           format = "󰕾 {volume}%";
           format-muted = "󰖁 Muted";
           format-icons = {
-            default = ["󰕿" "󰖀" "󰕾"];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           on-click = "pavucontrol";
         };
@@ -72,7 +89,13 @@
           format = " {capacity}%";
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         "clock" = {
           format = "{:%I:%M %p}";

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.dunst = {
     enable = false;
     package = pkgs.dunst;
@@ -12,7 +13,7 @@
         background = "#1b1b1b"; # bg
         foreground = "#d5c4a1"; # fg
 
-        font = "0xProto Nerd Font 8";
+        font = "JetBrainsMono Nerd Font 8";
 
         enable_recursive_icon_lookup = true;
         icon_position = "left";
@@ -26,9 +27,12 @@
         sort = "yes";
         stack_duplicates = true;
 
-        mouse_left_click = ["do_action" "close_current"];
-        mouse_middle_click = ["close_current"];
-        mouse_right_click = ["close_all"];
+        mouse_left_click = [
+          "do_action"
+          "close_current"
+        ];
+        mouse_middle_click = [ "close_current" ];
+        mouse_right_click = [ "close_all" ];
 
         layer = "overlay";
         force_wayland = false;

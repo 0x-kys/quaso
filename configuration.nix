@@ -11,7 +11,10 @@
 
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {
@@ -21,22 +24,9 @@
     };
   };
 
-  fileSystems = {
-    "/run/media/syk/hdd" = {
-      device = "/dev/sda1";
-      fsType = "exfat";
-      options = [
-        "defaults"
-        "x-gvfs-show"
-        "uid=1000"
-        "gid=100"
-        "dmask=007"
-        "fmask=117"
-      ];
-    };
+  time = {
+    timeZone = "Asia/Kolkata";
   };
-
-  time = {timeZone = "Asia/Kolkata";};
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -54,7 +44,16 @@
     };
   };
 
-  nixpkgs = {config = {allowUnfree = true;};};
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
 
-  system = {stateVersion = "24.11";};
+  programs.fish.enable = true;
+  programs.adb.enable = true;
+
+  system = {
+    stateVersion = "24.11";
+  };
 }

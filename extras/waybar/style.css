@@ -1,16 +1,16 @@
 * {
-  border: none;
-  border-radius: 6px;
-  font-family: "0xProto Nerd Font Propo", monospace;
-  font-size: 14px;
-  min-height: 0;
+    border: none;
+    border-radius: 6px;
+    font-family: "JetBrainsMono Nerd Font Propo", monospace;
+    font-size: 14px;
+    min-height: 0;
 }
 
 window#waybar {
-  background: #1d2021;
-  color: #ebdbb2;
-  border-radius: 8px;
-  padding: 4px;
+    background: #1d2021;
+    color: #ebdbb2;
+    border-radius: 8px;
+    padding: 2px;
 }
 
 #custom-nixos,
@@ -30,28 +30,28 @@ window#waybar {
 #custom-reboot,
 #custom-exit_hyprland,
 #custom-endpoint {
-  padding: 4px;
-  margin: 0 2px;
-  background: transparent;
-  color: #ebdbb2;
+    padding: 4px;
+    margin: 0 2px;
+    background: transparent;
+    color: #ebdbb2;
 }
 
 #custom-nixos {
-  font-size: 20px;
-  color: #7aa2f7;
+    font-size: 20px;
+    color: #7aa2f7;
 }
 
 #workspaces button {
-  color: #ebdbb2;
-  background: transparent;
-  margin: 0 2px;
-  padding: 2px 4px;
-  border-radius: 4px;
+    color: #ebdbb2;
+    background: transparent;
+    margin: 0 2px;
+    padding: 2px 4px;
+    border-radius: 4px;
 }
 
 #workspaces button.active {
-  color: #fb4934;
-  background: #3c3836;
+    color: #fb4934;
+    background: #3c3836;
 }
 
 #pulseaudio,
@@ -62,52 +62,52 @@ window#waybar {
 #battery,
 #clock,
 #tray {
-  color: #ebdbb2;
-  border-radius: 4px;
+    color: #ebdbb2;
+    border-radius: 4px;
 }
 
 #battery.charging {
-  color: #b8bb26;
+    color: #b8bb26;
 }
 
 #battery.warning:not(.charging) {
-  color: #fe8019;
+    color: #fe8019;
 }
 
 #battery.critical:not(.charging) {
-  color: #fb4934;
+    color: #fb4934;
 }
 
 #custom-expand {
-  color: #d3869b;
-  border-radius: 4px;
+    color: #d3869b;
+    border-radius: 4px;
 }
 
 #custom-swaylock {
-  color: #fabd2f;
-  border-radius: 4px;
+    color: #fabd2f;
+    border-radius: 4px;
 }
 
 #custom-suspend {
-  color: #b8bb26;
-  border-radius: 4px;
+    color: #b8bb26;
+    border-radius: 4px;
 }
 
 #custom-hibernate {
-  color: #83a598;
-  border-radius: 4px;
+    color: #83a598;
+    border-radius: 4px;
 }
 
 #custom-reboot {
-  color: #fe8019;
-  border-radius: 4px;
+    color: #fe8019;
+    border-radius: 4px;
 }
 
 #custom-exit_hyprland {
-  color: #fb4934;
-  border-radius: 4px;
+    color: #fb4934;
+    border-radius: 4px;
 }
 
 #custom-endpoint {
-  color: #ebdbb2;
+    color: #ebdbb2;
 }

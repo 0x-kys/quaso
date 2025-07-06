@@ -24,7 +24,7 @@
       };
 
       exec-once = [
-        "hyprpanel"
+        "waybar"
         "waypaper --restore"
         "kanshi"
       ];
@@ -62,12 +62,12 @@
         };
 
         blur = {
-          enabled = false;
+          enabled = true;
         };
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
 
         bezier = [
           "superSmoothIn, 0.9, 0, 0.1, 1"
@@ -128,7 +128,7 @@
       "$mainMod" = "SUPER";
 
       bind = [
-        "$mainMod, Q, exec, $terminal"
+        "$mainMod, Return, exec, $terminal"
         "$mainMod, C, killactive, "
         "$mainMod, M, exit, "
         "$mainMod, E, exec, $fileManager"

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   xresources.properties = {
     "Xcursor.size" = 24;
     "Xft.dpi" = 96;
@@ -13,45 +14,9 @@
     ollama = {
       enable = true;
       package = pkgs.ollama;
-      environmentVariables = {};
+      environmentVariables = { };
       host = "127.0.0.1";
       port = 11434;
-    };
-
-    kanshi = {
-      enable = true;
-      package = pkgs.kanshi;
-      settings = [
-        {
-          profile = {
-            name = "laptop";
-            outputs = [
-              {
-                criteria = "eDP-1";
-                status = "enable";
-                scale = 1.0;
-              }
-            ];
-          };
-        }
-        {
-          profile = {
-            name = "external";
-            outputs = [
-              {
-                criteria = "eDP-1";
-                status = "disable";
-              }
-              {
-                criteria = "HDMI-A-1";
-                status = "enable";
-                mode = "2560x1440@144Hz";
-                position = "0,0";
-              }
-            ];
-          };
-        }
-      ];
     };
 
     hyprpaper = {
@@ -102,7 +67,9 @@
 
   qt = {
     enable = true;
-    platformTheme = {name = "adwaita";};
+    platformTheme = {
+      name = "adwaita";
+    };
     style = {
       name = "adwaita-dark";
       package = pkgs.adwaita-qt;

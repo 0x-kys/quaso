@@ -1,53 +1,53 @@
 * {
-  font-family: 0xProto Nerd Font;
-  font-size: 10pt;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 10pt;
 }
 
 window {
-  margin: 0px;
-  border: 1px solid #928374; /* gray */
-  background-color: #1b1b1b; /* bg */
-  border-radius: 8px;
+    margin: 0px;
+    border: 1px solid #928374; /* gray */
+    background-color: #1b1b1b; /* bg */
+    border-radius: 8px;
 }
 
 #input {
-  margin: 5px;
-  border: none;
-  background-color: #1b1b1b; /* bg */
-  color: #d5c4a1; /* fg */
+    margin: 5px;
+    border: none;
+    background-color: #1b1b1b; /* bg */
+    color: #d5c4a1; /* fg */
 }
 
 #inner-box {
-  margin: 5px;
-  border: none;
-  background-color: transparent;
+    margin: 5px;
+    border: none;
+    background-color: transparent;
 }
 
 #outer-box {
-  margin: 0px;
-  border: none;
-  background-color: transparent;
+    margin: 0px;
+    border: none;
+    background-color: transparent;
 }
 
 #scroll {
-  margin: 0px;
-  border: none;
+    margin: 0px;
+    border: none;
 }
 
 #text {
-  margin: 5px;
-  border: none;
-  color: #d5c4a1; /* fg */
+    margin: 5px;
+    border: none;
+    color: #d5c4a1; /* fg */
 }
 
 #entry {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 #entry:selected {
-  background-color: #928374; /* gray */
+    background-color: #928374; /* gray */
 }
 
 window {
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.33);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.33);
 }
