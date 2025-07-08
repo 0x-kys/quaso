@@ -27,6 +27,7 @@
           jdk21
         ];
       })
+      jdk17
       remmina
       nwg-displays
       waypaper

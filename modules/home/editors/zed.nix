@@ -3,7 +3,11 @@
     enable = true;
     package = pkgs.zed-editor;
     extensions = [];
-    extraPackages = with pkgs; [];
+    extraPackages = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
     userKeymaps = [
       {
         context = "Editor && vim_mode == normal";
@@ -48,7 +52,15 @@
       }
     ];
     userSettings = {
+      vim_mode = true;
+      relative_line_numbers = true;
       show_edit_predictions = false;
+      show_completions_on_input = false;
+      theme = {
+        mode = "system";
+        light = "Gruvbox Dark Hard";
+        dark = "Gruvbox Dark Hard";
+      };
       features = {
         edit_prediction_provider = "zed";
       };
@@ -65,18 +77,11 @@
         metrics = false;
         diagnostics = false;
       };
-      vim_mode = true;
-      relative_line_numbers = true;
       buffer_font_family = "JetBrainsMono Nerd Font";
       ui_font_family = "JetBrainsMono Nerd Font";
       ui_font_size = 14;
       agent_font_size = 14;
       buffer_font_size = 12;
-      theme = {
-        mode = "system";
-        light = "Gruvbox Dark Hard";
-        dark = "Gruvbox Dark Hard";
-      };
       soft_wrap = "editor_width";
       tab_size = 2;
       hard_tabs = true;

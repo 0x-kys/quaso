@@ -203,7 +203,6 @@
 
   home.sessionVariables = {
     XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "river";
     NIXOS_OZONE_WL = "1";
   };
 }

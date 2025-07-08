@@ -1,11 +1,10 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.ghostty = {
     enable = true;
     package = pkgs.ghostty;
     settings = {
       theme = "GruvboxDarkHard";
-      font-size = 10;
+      font-size = 9;
       font-family = "JetBrainsMono Nerd Font";
       keybind = [
         "ctrl+h=goto_split:left"
@@ -13,8 +12,8 @@
       ];
       window-decoration = false;
       gtk-titlebar = false;
-      window-padding-x = 8;
-      window-padding-y = 8;
+      window-padding-x = 4;
+      window-padding-y = 4;
       window-inherit-working-directory = true;
       copy-on-select = true;
       adjust-underline-position = 4;
