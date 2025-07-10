@@ -118,6 +118,7 @@
       nwg-look
       inputs.zen-browser.packages."${system}".default
       slack
+      xdg-desktop-portal-gtk
     ];
   };
 

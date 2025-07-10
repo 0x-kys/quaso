@@ -12,6 +12,9 @@
   };
 
   services = {
+    dbus = {
+      enable = true;
+    };
     udev = {
       enable = true;
       packages = [pkgs.android-udev-rules];
@@ -169,20 +172,19 @@
       playerctl
       wf-recorder
       gnome-tweaks
-      xdg-desktop-portal-hyprland
+      xdg-desktop-portal
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
       xdg-desktop-portal-gnome
     ];
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gnome
-      ];
-    };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 }

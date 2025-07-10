@@ -3,11 +3,6 @@
     enable = true;
     package = pkgs.zed-editor;
     extensions = [];
-    extraPackages = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
     userKeymaps = [
       {
         context = "Editor && vim_mode == normal";
@@ -58,8 +53,8 @@
       show_completions_on_input = false;
       theme = {
         mode = "system";
-        light = "Gruvbox Dark Hard";
-        dark = "Gruvbox Dark Hard";
+        light = "Gruvbox Baby";
+        dark = "Gruvbox Baby";
       };
       features = {
         edit_prediction_provider = "zed";
@@ -291,6 +286,7 @@
       ini
       golangci-lint
       go-snippets
+      gruvbox-baby
     ];
   };
 }
