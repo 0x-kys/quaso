@@ -201,12 +201,14 @@
         ", XF86AudioPrev, exec, playerctl previous"
       ];
 
-      windowrule = [];
+      windowrule = [
+        "float,class:^(xdg-desktop-portal-gtk)$"
+      ];
 
       windowrulev2 = [
         "float,class:org\.gnome\.Nautilus"
+        "float,class:^(xdg-desktop-portal-gtk)$"
         "suppressevent maximize, class:.*"
-        "float,class:xdg-desktop-portal-gtk,title:.*wants to open"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
       ];
     };
