@@ -53,8 +53,8 @@
       show_completions_on_input = false;
       theme = {
         mode = "system";
-        light = "Gruvbox Baby";
-        dark = "Gruvbox Baby";
+        light = "Gruvbox Dark Hard";
+        dark = "Gruvbox Dark Hard";
       };
       features = {
         edit_prediction_provider = "zed";
@@ -287,6 +287,8 @@
       golangci-lint
       go-snippets
       gruvbox-baby
+      vhdl
+      elixir
     ];
   };
 }

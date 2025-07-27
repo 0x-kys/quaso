@@ -10,7 +10,8 @@
         spacing = 4;
         modules-left = [
           "custom/nixos"
-          "hyprland/workspaces"
+          "sway/workspaces"
+          "sway/mode"
         ];
         modules-center = ["clock"];
         modules-right = [
@@ -28,11 +29,9 @@
           format = "󱄅";
           tooltip = false;
         };
-        "hyprland/workspaces" = {
+        "sway/workspaces" = {
           format = "{icon}";
-          on-click = "activate";
           all-outputs = true;
-          show-special = false;
           format-icons = {
             "1" = "一";
             "2" = "二";
@@ -45,6 +44,9 @@
             "9" = "九";
             "10" = "十";
           };
+        };
+        "sway/mode" = {
+          format = "<span style=\"italic\">{}</span>";
         };
         "pulseaudio" = {
           format = "󰕾 {volume}%";
@@ -69,22 +71,22 @@
           max-length = 15;
         };
         "cpu" = {
-          format = " {usage}%";
+          format = " {usage}%";
           tooltip = true;
           interval = 1;
         };
         "memory" = {
-          format = " {}%";
+          format = " {}%";
           tooltip-format = "{used:0.1f}GB/{total:0.1f}GB";
         };
         "custom/notification" = {
           tooltip = false;
           format = "{icon}";
           format-icons = {
-            notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
-            none = "";
-            dnd-notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
-            dnd-none = "";
+            notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
+            none = "";
+            dnd-notification = "<span foreground='red'><small><sup>⬤</sup></small></span>";
+            dnd-none = "";
           };
           return-type = "json";
           exec-if = "which swaync-client";
@@ -93,21 +95,22 @@
           on-click-right = "swaync-client -d -sw";
           escape = true;
         };
+
         "battery" = {
           states = {
             good = 80;
             warning = 30;
             critical = 15;
           };
-          format = " {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format = " {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
         };
         "clock" = {
@@ -143,7 +146,7 @@
             "custom/suspend"
             "custom/hibernate"
             "custom/reboot"
-            "custom/exit_hyprland"
+            "custom/exit_sway"
             "custom/endpoint"
           ];
         };
@@ -152,11 +155,11 @@
           tooltip = false;
         };
         "custom/endpoint" = {
-          format = "";
+          format = "";
           tooltip = false;
         };
         "custom/swaylock" = {
-          format = "";
+          format = "";
           on-click = "swaylock --screenshots --clock --datestr \"%a %e.%m.%Y\" --timestr \"%H:%M\" --effect-blur 10x2 --indicator";
           tooltip = false;
         };
@@ -166,18 +169,18 @@
           tooltip = false;
         };
         "custom/hibernate" = {
-          format = "";
+          format = "";
           on-click = "systemctl hibernate";
           tooltip = false;
         };
         "custom/reboot" = {
-          format = "";
+          format = "";
           on-click = "systemctl reboot";
           tooltip = false;
         };
-        "custom/exit_hyprland" = {
-          format = "";
-          on-click = "hyprctl dispatch exit";
+        "custom/exit_sway" = {
+          format = "";
+          on-click = "swaymsg exit";
           tooltip = false;
         };
       };

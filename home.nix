@@ -7,7 +7,6 @@
     ./modules/home/files.nix
     ./modules/home/packages.nix
     ./modules/home/desktop/hyprland.nix
-    ./modules/home/desktop/river.nix
     ./modules/home/desktop/waybar.nix
     ./modules/home/desktop/wofi.nix
     ./modules/home/desktop/dunst.nix

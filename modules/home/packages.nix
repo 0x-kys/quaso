@@ -84,6 +84,7 @@
       cmake
       clang
       rustup
+      rustup-toolchain-install-master
       nodejs_24
       python3
       corepack
@@ -119,6 +120,9 @@
       inputs.zen-browser.packages."${system}".default
       slack
       xdg-desktop-portal-gtk
+      telegram-desktop
+      beam28Packages.elixir
+      beam28Packages.elixir-ls
     ];
   };
 

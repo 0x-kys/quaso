@@ -94,7 +94,10 @@
         # ipv6
         host  all      all     ::1/128        md5
       '';
-      extensions = extensions: [extensions.pgvector];
+      extensions = extensions: [
+        extensions.pgvector
+        extensions.postgis
+      ];
     };
     redis = {
       enable = true;
@@ -115,12 +118,6 @@
   programs = {
     hyprland = {
       enable = true;
-      xwayland = {
-        enable = true;
-      };
-    };
-    river = {
-      enable = false;
       xwayland = {
         enable = true;
       };
@@ -152,6 +149,7 @@
       android-studio
       vesktop
       xorg.xinit
+      lix
       vim
       curl
       wget
@@ -161,6 +159,8 @@
       pywal
       nushell
       hyprpaper
+      swaybg
+      swayidle
       wl-clipboard
       wl-clip-persist
       slurp
