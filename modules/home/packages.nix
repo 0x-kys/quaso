@@ -123,6 +123,13 @@
       telegram-desktop
       beam28Packages.elixir
       beam28Packages.elixir-ls
+      yazi
+      file
+      unzip
+      ffmpegthumbnailer
+      poppler_utils
+      zoxide
+      fzf
     ];
   };
 

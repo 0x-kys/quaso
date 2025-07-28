@@ -22,6 +22,7 @@
     ./modules/home/utils/fastfetch.nix
     ./modules/home/utils/git.nix
     ./modules/home/utils/cava.nix
+    ./modules/home/utils/yazi.nix
     ./modules/shared/config.nix
   ];
 
