@@ -2,11 +2,11 @@
 
 ## general nix commands
 rbs() {
-    nixos-rebuild switch --flake . --use-remote-sudo
+    nixos-rebuild switch --flake . --sudo
 }
 
 rbs-debug() {
-    nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
+    nixos-rebuild switch --flake . --sudo --show-trace --verbose
 }
 
 up-flake() {
