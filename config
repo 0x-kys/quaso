@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+
+## general nix commands
+rbs() {
+    nixos-rebuild switch --flake . --use-remote-sudo
+}
+
+rbs-debug() {
+    nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
+}
+
+up-flake() {
+    nix flake update --flake .
+}
+
+# update  specific input
+# usage: up-pkg home-manager
+up-pkg() {
+    local input="$1"
+    nix flake update "$input"
+}
+
+history() {
+    nix profile history --profile /nix/var/nix/profiles/system
+}
+
+repl() {
+    nix repl -f flake:nixpkgs
+}
+
+clean() {
+    # remove all generations older than 7 days
+    sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
+}
+
+gc() {
+    # garbage collect all unused nix store entries
+    sudo nix-collect-garbage --delete-old
+}
+
+# upgrade Lix and restart daemon
+# https://docs.lix.systems/manual/lix/stable/installation/upgrading.html
+up-lix() {
+    # update the lix-module flake input
+    if nix flake update lix-module; then
+        echo "Lix flake input updated successfully."
+    else
+        echo "Error: Failed to update lix-module flake input."
+        return 1
+    fi
+    # rebuild the system to apply the new Lix version
+    if rbs-debug; then
+        echo "System rebuilt with updated Lix."
+    else
+        echo "Error: Failed to rebuild system."
+        return 1
+    fi
+    # restart the Nix daemon
+    if sudo systemctl daemon-reload && sudo systemctl restart nix-daemon; then
+        echo "Nix daemon restarted successfully."
+    else
+        echo "Error: Failed to restart Nix daemon."
+        return 1
+    fi
+    # verify the Lix version
+    nix --version
+}
+
+# update everything
+up-all() {
+    up-lix
+    up-flake
+    rbs-debug
+}
+
+# command dispatching
+if [[ $# -gt 0 ]]; then
+    command="$1"
+    shift # Remove the first argument
+
+    case "$command" in
+        "rbs")
+            rbs
+            ;;
+        "rbs-debug")
+            rbs-debug
+            ;;
+        "up-flake")
+            up-flake
+            ;;
+        "up-pkg")
+            if [[ $# -gt 0 ]]; then
+                up-pkg "$1"
+            else
+                echo "Error: up-pkg requires a package name"
+            fi
+            ;;
+        "history")
+            history
+            ;;
+        "repl")
+            repl
+            ;;
+        "clean")
+            clean
+            ;;
+        "gc")
+            gc
+            ;;
+        "up-lix")
+            up-lix
+            ;;
+        "up-all")
+            up-all
+            ;;
+        *)
+            echo "Unknown command: $command"
+            ;;
+    esac
+fi
