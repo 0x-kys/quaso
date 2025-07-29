@@ -289,6 +289,7 @@
       gruvbox-baby
       vhdl
       elixir
+      basher
     ];
   };
 }
