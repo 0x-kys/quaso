@@ -19,10 +19,13 @@
       enable = true;
       packages = [pkgs.android-udev-rules];
     };
-    gnome = {
-      gnome-keyring = {
-        enable = true;
-      };
+    # gnome = {
+    #   gnome-keyring = {
+    #     enable = true;
+    #   };
+    # };
+    passSecretService = {
+      enable = true;
     };
     xserver = {
       enable = true;
