@@ -11,6 +11,7 @@
 
   home = {
     packages = with pkgs; [
+      hello
       (writeScriptBin "cow" ''
         #!/usr/bin/env bash
         cowsay $(fortune)
@@ -130,6 +131,7 @@
       poppler_utils
       zoxide
       fzf
+      home-manager
     ];
   };
 
