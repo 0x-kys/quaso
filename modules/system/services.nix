@@ -25,17 +25,21 @@
     #   };
     # };
     passSecretService = {
-      enable = true;
+      enable = false;
+    };
+    gnome = {
+      gnome-keyring.enable = true;
+    };
+    displayManager = {
+      ly = {
+        enable = true;
+        package = pkgs.ly;
+        x11Support = true;
+      };
     };
     xserver = {
       enable = true;
       videoDrivers = ["nvidia"];
-      displayManager = {
-        gdm = {
-          enable = true;
-          wayland = true;
-        };
-      };
       desktopManager = {
         gnome = {
           enable = true;

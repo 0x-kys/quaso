@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   networking = {
-    hostName = "nix";
+    hostName = "quaso";
     wireless = {
       enable = false;
     };

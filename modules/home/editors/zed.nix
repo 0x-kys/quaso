@@ -290,6 +290,7 @@
       vhdl
       elixir
       basher
+      discord-presence
     ];
   };
 }

@@ -35,7 +35,7 @@
     ...
   }: {
     nixosConfigurations = {
-      nix = nixpkgs.lib.nixosSystem {
+      quaso = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
