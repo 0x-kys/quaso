@@ -101,10 +101,11 @@
         # ipv6
         host  all      all     ::1/128        md5
       '';
-      extensions = extensions: [
-        extensions.pgvector
-        extensions.postgis
-      ];
+      extensions = with pkgs.postgresql_16.pkgs; [pgvector postgis];
+      initialScript = pkgs.writeText "init-extensions" ''
+        CREATE EXTENSION IF NOT EXISTS vector;
+        CREATE EXTENSION IF NOT EXISTS postgis;
+      '';
     };
     redis = {
       enable = true;

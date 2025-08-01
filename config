@@ -9,6 +9,14 @@ rbs-debug() {
     nixos-rebuild switch --flake . --sudo --show-trace --verbose
 }
 
+restart-hm() {
+		systemctl restart home-manager-syk.service
+}
+
+restart-daemon() {
+	sudo systemctl daemon-reload && sudo systemctl restart nix-daemon
+}
+
 up-flake() {
     nix flake update --flake .
 }
@@ -71,6 +79,7 @@ up-all() {
     up-lix
     up-flake
     rbs-debug
+    restart-hm
 }
 
 # command dispatching
@@ -101,6 +110,9 @@ if [[ $# -gt 0 ]]; then
         "repl")
             repl
             ;;
+        "restart-daemon")
+            restart-daemon
+            ;;
         "clean")
             clean
             ;;
@@ -110,6 +122,9 @@ if [[ $# -gt 0 ]]; then
         "up-lix")
             up-lix
             ;;
+        "restart-hm")
+        		restart-hm
+          	;;
         "up-all")
             up-all
             ;;

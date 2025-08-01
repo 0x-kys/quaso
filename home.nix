@@ -13,7 +13,6 @@
     ./modules/home/desktop/swaync.nix
     ./modules/home/editors/neovim.nix
     ./modules/home/editors/zed.nix
-    ./modules/home/editors/vscode.nix
     ./modules/home/shells/fish.nix
     ./modules/home/shells/starship.nix
     ./modules/home/terminals/ghostty.nix

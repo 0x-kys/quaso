@@ -66,7 +66,6 @@
         };
         model_parameters = [];
         default_profile = "ask";
-        version = "2";
       };
       telemetry = {
         metrics = false;
@@ -249,7 +248,6 @@
         cursors = true;
         git_diff = true;
         search_results = true;
-        selected_symbols = true;
         diagnostics = "all";
         axes = {
           horizontal = true;
@@ -259,7 +257,6 @@
       enable_language_server = true;
       ensure_final_newline_on_save = true;
       use_autoclose = false;
-      hour_format = "hour12";
     };
   };
 
